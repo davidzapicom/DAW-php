@@ -9,7 +9,7 @@ $enteros = array(
     foreach ($enteros as $value) { 
         echo "<tr>";  
         foreach ($value as $result) { 
-            echo "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result</td>"; 
+            echo "<td style='text-align: center;'>$result</td>"; 
             
         } 
         echo "</tr>"; 
