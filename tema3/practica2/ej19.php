@@ -1,17 +1,8 @@
 <?php
 $enteros = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-$array = count($enteros);
-for ($i = 0; $i <= $array; $i+=2){
-    $acumulador+=$array[$i];
-    echo $array[$i];
+$count = count($enteros);
+for ($enteros = 0; $enteros < $count; $enteros++){
+    $acumulador = $acumulador + $enteros;
 }
-//$media = $acumulador/$array;
-
-
-
-/*echo "La suma es: " .$acumulador;
-echo "La media es: " .$media;
-for ($i = 1; $i < $array; $i+=2){
-    print $array[$i];
-}*/
+    echo $acumulador;
 ?>
