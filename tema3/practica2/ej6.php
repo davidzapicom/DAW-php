@@ -1,23 +1,20 @@
 <?php
-$enteros = array( 
-    array(4,6,8,1), 
-    array(0,4,1,6), 
-    array(5,1,7,8), 
-    array(3,9,2,7) 
-); 
-
-//Metodo para buscar el valor maximo de toda la matriz y coger su posicion en la fila y en la columna.
-function maxMatriz($enteros) {
-    for ($fila = 0; $fila < 3; $fila++) {
-        for ($col = 0; $col < 3; $col++) {
-            if ($enteros[$fila][$col] > $max) {
-                $max = $enteros[$fila][$col];
-                $filamax = $fila;
-                $colmax = $col;
-            }
-        }
-    }
-    echo "El valor maximo de la matriz es: $max y su posicion es, en la fila: $filamax y en la columna: $colmax";
+function Demo1(){// Genera una matriz con posición, encuentra el valor máximo y la posición
+	$array = [34,56,78,89,
+              76,54,32,41,
+              90,93,88,76,
+              70,40,97,32];
+	$one = [1,2,3,4];
+	for ($j = 1; $j < 5; $j++) {   // Clave de síntesis
+		for($i = 0; $i < count($one); $i++){
+				$a[] =  $j.'-'.$one[$i];// La nueva matriz creada (clave)
+			}
+	}
+	$new_array = array_combine($a, $array);// Matriz con posición
+	$max = max($array);// Para valores grandes
+	$max_new_array = strval(array_search($max, $new_array));// La posición del máximo
+	echo "Para valores grandes: $max y la ubicación correspondiente: $max_new_array";
 }
-maxMatriz($enteros);
+
+echo Demo1().'<br>';// Para gran valor y posición
 ?>
