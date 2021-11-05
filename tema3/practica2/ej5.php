@@ -5,35 +5,31 @@ $enteros = array(
     array(5,1,7,8,2) 
 ); 
 
-    echo "<table border width='400' height='200'>";  
-    foreach ($enteros as $value) { 
-        echo "<tr>";  
-        foreach ($value as $result) { 
-            echo "<td style='text-align: center;'>$result</td>"; 
-            
-        } 
-        echo "</tr>"; 
+echo "<table border width='400' height='200'>";  
+foreach ($enteros as $value) { 
+    echo "<tr>";  
+    foreach ($value as $result) { 
+        echo "<td style='text-align: center;'>$result</td>";    
     } 
-    echo "</table>";  
-
-
+    echo "</tr>"; 
+} 
+echo "</table>";
     
-    echo "<ul>";
-    echo "<br/><li>Elementos por fila: ";
-    for ($j = 0; $j < 3; $j++){
-        for ($i = 0; $i < 5; $i++){
-            $filas = $enteros[$j][$i];
-            echo "$filas " ;
-        }
+echo "<ul>";
+echo "<br/><li>Elementos por fila: ";
+for ($j = 0; $j < 3; $j++){
+    for ($i = 0; $i < 5; $i++){
+        $filas = $enteros[$j][$i];
+        echo "$filas ";
     }
+}
 
-    echo "<br/><li>Elementos por columna: ";
-    for ($j = 0; $j < 5; $j++){
-        for ($i = 0; $i < 3; $i++){
-            $columnas = $enteros[$i][$j];
-            echo "$columnas ";
-        }
+echo "<br/><li>Elementos por columna: ";
+for ($j = 0; $j < 5; $j++){
+    for ($i = 0; $i < 3; $i++){
+        $columnas = $enteros[$i][$j];
+        echo "$columnas ";
     }
-    echo "<ul/>";
-
+}
+echo "<ul/>";
 ?>
