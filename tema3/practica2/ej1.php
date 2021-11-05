@@ -4,7 +4,10 @@ echo $coches[5];
 
 echo "<br/>";
 
-$importe = array(32.583, 11.239, 45.781, 22.237);
+$importe[0] = 32.583;
+$importe[1] = 11.239;
+$importe[2] = 45.781;
+$importe[3] = 22.237;
 echo $importe[1];
 
 echo "<br/>";

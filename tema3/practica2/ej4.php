@@ -1,5 +1,4 @@
 <?php
-
 $listado = array(
     array(1, 30, 50, 35),
     array(6, 18, 15, 95),
