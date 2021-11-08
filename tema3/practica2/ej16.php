@@ -1,8 +1,11 @@
 <?php
-$ciudades[MD] = "Madrid";
-$ciudades[] = "Madrid"; 
-$ciudades[] = "Barcelona"; 
-$ciudades[] = "Valencia";
+$ciudades = array(
+   "MD" => "Madrid",
+   "BA" => "Barcelona", 
+   "LO" => "Londres",
+   "NY" => "New York",
+);
 
-echo "La ciudad es" .$ciudades[MD];
+
+echo "La ciudad es" .$ciudades[];
 ?>
