@@ -6,9 +6,6 @@ $listado = array(
     array(3, 71, 50, 41),
 );
 
-	for ($fila = 0; $fila < 5; $fila++) {
-		$acumulador+=$matriz[$fila][$fila];
-	}
-	echo "La suma total de la diagonal principal es: $acumulador";
+	
 
 ?>
