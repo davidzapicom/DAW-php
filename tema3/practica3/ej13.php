@@ -1,9 +1,5 @@
 <?php
 echo "<h2>PHP Form Validation Example</h2>";
-
-$email="abc@abc.com";
-$emailErr="Email correcto";
-
 if(isset($_POST["boton"])){
     $name = $_POST["name"];
     $email = $_POST["email"];
@@ -18,12 +14,17 @@ if(isset($_POST["boton"])){
             $emailErr = "Fomato de Email invalido";
         }
     }
+
+    echo "<h2>Your Input</h2>";
+    echo $email;
+    echo "<br>";
+    echo $emailErr;
 } else {
     ?>
     <form action="#" method="POST">
         Name: <input type="text" name="name">
         <br/><br/>
-        Email: <input type="email" name="email" value="<?php echo $email;?>"><span class="error">* <?php echo $emailErr;?>">
+        Email: <input type="email" name="email">
         <br/><br/>
         Website: <input type="text" name="website">
         <br/><br/>
@@ -36,9 +37,4 @@ if(isset($_POST["boton"])){
     </form>
     <?php  
 }
-
-echo "<h2>Your Input</h2>";
-echo $email;
-echo "<br>";
-echo $emailErr;
 ?>
