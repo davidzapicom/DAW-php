@@ -5,26 +5,25 @@ $email="abc@abc.com";
 $emailErr="Email correcto";
 
 if(isset($_POST["boton"])){
-    if (empty($email)|) {
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $web = $_POST["website"];
+    $com = $_POST["comments"];
+    $gender = $_POST["radio"];
+
+    if (empty($email)) {
         $emailErr = "Se requiere Email";
     } else {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $emailErr = "Fomato de Email invalido";
         }
     }
-
-
-    $num = $_POST["n1"];
-    $power = $_POST["n2"];
-
-    echo " $num elevado a $power es: ";
-    echo pow($num, $power);
 } else {
     ?>
     <form action="#" method="POST">
         Name: <input type="text" name="name">
         <br/><br/>
-        Email: <input type="email" name="email">
+        Email: <input type="email" name="email" value="<?php echo $email;?>"><span class="error">* <?php echo $emailErr;?>">
         <br/><br/>
         Website: <input type="text" name="website">
         <br/><br/>
