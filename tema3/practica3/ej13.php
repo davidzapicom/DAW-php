@@ -4,8 +4,18 @@ if(isset($_POST["boton"])){
     $name = $_POST["name"];
     $email = $_POST["email"];
     $web = $_POST["website"];
-    $com = $_POST["comments"];
+    $com = $_POST["radio"];
     $gender = $_POST["radio"];
+
+    if (empty($name)) {
+        $nameErr = "Nombre requerido";
+    } else {
+        $name = test_input($_POST["name"]);
+        if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+            $nameErr = "Only letters and white space allowed";
+        }
+    }
+    
 
     if (empty($email)) {
         $emailErr = "Se requiere Email";
@@ -14,6 +24,7 @@ if(isset($_POST["boton"])){
             $emailErr = "Fomato de Email invalido";
         }
     }
+    
 
     echo "<h2>Your Input</h2>";
     echo $email;
