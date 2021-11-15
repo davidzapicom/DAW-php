@@ -67,7 +67,7 @@ function limpiar_datos($data) {
 ?>
 
     <h2>Ejemplo de validacion formulario PHP</h2>
-    <p><span class="error">* campo requerido.</span></p>
+    <p><span class="error">* Campos requeridos.</span></p>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
       Nombre: <input type="text" name="name" value="<?php echo $name;?>">
       <span class="error">* <?php echo $nameErr;?></span>
@@ -86,11 +86,11 @@ function limpiar_datos($data) {
       <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Otro  
       <span class="error">* <?php echo $genderErr;?></span>
       <br><br>
-      <input type="submit" name="submit" value="Submit">  
+      <input type="submit" name="submit" value="ENVIAR">  
     </form>
 
 <?php
-echo "<h2>Your Input:</h2><br/> $name <br> $email <br> $website <br> $comment <br> $gender";
+echo "<h2>Tu entrada:</h2><br/> $name <br> $email <br> $website <br> $comment <br> $gender";
 ?>
 
   </body>
