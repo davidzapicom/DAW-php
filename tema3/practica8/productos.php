@@ -3,4 +3,9 @@
     $_SESSION['nombre'] = $_POST['nombre'];
 
     echo 'Bienvenid@ ' .$_SESSION["nombre"];
+
+
+
+    echo "<h2>Carro:</h2>";
 ?>
+    
