@@ -1,11 +1,13 @@
 <!DOCTYPE HTML>  
 <html>
-<head>
-<style>
-.error {color: #FF0000;}
-</style>
-</head>
-<body>  
+    <head>
+      <style>
+        .error {
+          color: #FF0000;
+        }
+      </style>
+    </head>
+    <body>  
 
 <?php
 // define variables and set to empty values
@@ -89,15 +91,7 @@ function test_input($data) {
 
 <?php
 echo "<h2>Your Input:</h2>";
-echo $name;
-echo "<br>";
-echo $email;
-echo "<br>";
-echo $website;
-echo "<br>";
-echo $comment;
-echo "<br>";
-echo $gender;
+echo " $name <br> $email <br> $website <br> $comment <br> $gender";
 ?>
 
 </body>
