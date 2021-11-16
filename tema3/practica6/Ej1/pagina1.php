@@ -1,9 +1,7 @@
 <html>
-
 <head>
   <title>Problema</title>
 </head>
-
 <body <?php if (isset($_COOKIE['color'])) echo " style=\"background:$_COOKIE[color]\"" ?>>
   <form action="pagina2.php" method="post">
     Seleccione de que color desea que sea la página de ahora en más:<br>
@@ -13,5 +11,4 @@
     <input type="submit" value="Crear cookie">
   </form>
 </body>
-
 </html>
