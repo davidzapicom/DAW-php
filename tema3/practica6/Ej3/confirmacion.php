@@ -14,12 +14,12 @@
 </head>
 <body>
     <fieldset>
-        <p>Bienvenido introduce tu nombre de usuario y contraseña.</p>
-        <form action="login.php" method="POST">
-            <input type="text" name="nombre"><br/><br/>
-            <input type="password" name="contraseña"><br/><br/>
-            <input type="submit" name="boton" value="Enviar">
-        </form>
+        <p>Los datos introducidos son los siguientes.</p>
+        <?php
+        $nom = $_POST['nombre'];
+        $pass = $_POST['contraseña'];
+        echo "<p>Usuario: $nom <br/> Contraseña: $pass</p>";
+        ?>
     </fieldset>
 </body>
 </html>
