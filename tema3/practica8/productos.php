@@ -65,8 +65,10 @@
         aside{
             width: 29%;
             float: right;
-            height: 604px;
+            height: 584px;
             background-color: #142F43;
+            margin: 0 auto;
+            padding: 10px;
         }
         aside h1{
             color: white;
@@ -77,18 +79,27 @@
             color: #142F43;
             background-color: white;
         }
+        aside button.esp{
+            position: absolute;
+            bottom: 250;
+            right: 20;
+        }
         button{
             padding: 5px;
             border-radius: 20px;
             background-color: #142F43;
             color: white;
         }
+        button a{
+            text-decoration: none;
+            color: #142F43;
+        }
     </style>
     </html>
     <?php
     echo "<body>";
     echo "<div class='contenedor'>"; 
-    echo "<h1>Bienvenid@ " .$_SESSION["nombre"]. "</h1>";
+    echo "<h1>Bienvenid@ " .$_SESSION["nombre"]. "!</h1>";
 
 
     foreach ($productos as $propiedad) { 
@@ -105,6 +116,7 @@
     foreach ($productos as $propiedad) { 
         echo '<button type="submit" value="$propiedad["Producto"]">Quitar</button>';
     }
+    echo '<button class="esp" type="submit"><a href="confirmar.php">Continuar</a></button>';
     echo "</aside>";
     
     echo "</body>";
