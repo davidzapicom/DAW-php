@@ -37,12 +37,19 @@
     );
 ?>
     <html>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap" rel="stylesheet">
     <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: #142F43;
+        }
         .contenedor{
-            width: 800px;
+            width: 69%;
             height: 600px;
-            margin: 20px auto;
-            border: 3px solid black;
+            border: 2px solid #142F43;
+            float: left;
         }
         .box{
             float: left;
@@ -52,32 +59,58 @@
             margin-bottom: 20px; 
         }
         h1{
-            text-align:center;
+            text-align: left;
+            padding-left: 10px;
+        }
+        aside{
+            width: 29%;
+            float: right;
+            height: 604px;
+            background-color: #142F43;
+        }
+        aside h1{
+            color: white;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        aside button{
+            color: #142F43;
+            background-color: white;
+        }
+        button{
+            padding: 5px;
+            border-radius: 20px;
+            background-color: #142F43;
+            color: white;
         }
     </style>
     </html>
     <?php
+    echo "<body>";
     echo "<div class='contenedor'>"; 
     echo "<h1>Bienvenid@ " .$_SESSION["nombre"]. "</h1>";
 
 
     foreach ($productos as $propiedad) { 
         echo "<div class='box'>";
-        echo "Producto: ".$propiedad['Producto'];
-        echo "Descripcion: ".$propiedad['Descripcion'];
-        echo "Precio: ".$propiedad['Precio'];
-        echo '<button type="submit" value="$propiedad["Producto"]">añadir al carrito</button>';
+        echo "<p>Producto: <strong>".$propiedad['Producto']. "</strong></p>";
+        echo "<p>Descripcion: <strong>".$propiedad['Descripcion']. "</strong></p>";
+        echo "<p>Precio: <strong>".$propiedad['Precio']. "€</strong></p>";
+        echo '<button type="submit" value="$propiedad["Producto"]">Añadir</button>';
         echo "</div>";
-    }
+    } 
     echo "</div>";
-
-
-    echo "<aside></aside>";
-
-
-
-
-
+    echo "<aside>";
+    echo "<h1>carro</h1>";
+    foreach ($productos as $propiedad) { 
+        echo '<button type="submit" value="$propiedad["Producto"]">Quitar</button>';
+    }
+    echo "</aside>";
+    
+    echo "</body>";
+    
+    
+    
     
 
     
