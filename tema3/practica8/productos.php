@@ -40,10 +40,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <style>
         body {
+            display: inline-block;
             font-family: 'Outfit', sans-serif;
             color: #142F43;
+            background-color: #F0E9D2;
         }
         .contenedor{
             width: 69%;
@@ -58,9 +61,22 @@
             margin-left: 20px;
             margin-bottom: 20px; 
         }
-        h1{
-            text-align: left;
+        header h1, aside h1{
+            color: #F0E9D2;
+            text-align: center;
+            text-transform: uppercase;
             padding-left: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        header {
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #142F43;
+            height: 70px;
+            display: inline-block;
         }
         aside{
             width: 29%;
@@ -70,36 +86,48 @@
             margin: 0 auto;
             padding: 10px;
         }
-        aside h1{
-            color: white;
-            text-align: center;
-            text-transform: uppercase;
-        }
         aside button{
             color: #142F43;
-            background-color: white;
+            background-color: #F0E9D2;
         }
         aside button.esp{
             position: absolute;
-            bottom: 250;
+            bottom: 130;
             right: 20;
         }
         button{
             padding: 5px;
             border-radius: 20px;
             background-color: #142F43;
-            color: white;
+            color: #F0E9D2;
         }
         button a{
             text-decoration: none;
             color: #142F43;
         }
+        footer {
+        display:flex;
+        background-color: #142F43;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        width: 100%;
+        border-top: 1px solid white;
+        justify-content: center;
+        align-items:center;
+        color: #F0E9D2;
+        }
     </style>
     </html>
     <?php
+    echo "<header>";
+    echo "<h1><i class='fas fa-store'></i> TIENDA ONLINE <i class='fas fa-store'></i></h1>";
+    echo "</header>";
     echo "<body>";
     echo "<div class='contenedor'>"; 
-    echo "<h1>Bienvenid@ " .$_SESSION["nombre"]. "!</h1>";
+    echo "<h1 style='padding-left: 20px;'>Bienvenid@ " .$_SESSION["nombre"]. "!</h1>";
 
 
     foreach ($productos as $propiedad) { 
@@ -112,16 +140,16 @@
     } 
     echo "</div>";
     echo "<aside>";
-    echo "<h1>carro</h1>";
+    echo "<h1><i class='fas fa-shopping-bag'></i> carrito</h1>";
     foreach ($productos as $propiedad) { 
         echo '<button type="submit" value="$propiedad["Producto"]">Quitar</button>';
     }
     echo '<button class="esp" type="submit"><a href="confirmar.php">Continuar</a></button>';
     echo "</aside>";
-    
+    echo "<footer>";
+    echo "<h3>Proyecto carrito PHP David Zapico y Daniel Martinez.</h3>";
+    echo "</footer>";
     echo "</body>";
-    
-    
     
     
 
