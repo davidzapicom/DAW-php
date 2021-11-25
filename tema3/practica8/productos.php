@@ -1,51 +1,53 @@
 <?php
     session_start();
-    $_SESSION['nombre'] = $_POST['nombre'];
-    echo 'Bienvenid@ ' .$_SESSION["nombre"];
+    $_SESSION["nombre"] = $_POST["nombre"];
 
-    $datos = array(
-        "nombres" => array("Juan Perez","Pablo Manrique","Nancy Peña"),
-        "direccion" => array("Cra. 45 # 45 -56","Clle. 23 # 12 -19 Sur","Av. 34 # 16 -12"),
-        "telefono" => array("3456789","3214567","2135423"),
-        "fecha" => array("23/12/1997","12/10/1980"," 07/06/2000"),
-        "color" => array("Amarillo","Verde","Verde"),
-        "significado" => array("Riqueza yalegría.","No se encuentra el significado","")
+    $productos = array(
+        array(
+            "Titulo" => "Television 4K",
+            "Descripcion" => "22 pulgadas",
+            "Precio" => 210
+        ),
+        array(
+            "Producto" => "Movil",
+            "Descripcion" => "4G",
+            "Precio" => 300
+        ),
+        array(
+            "Producto" => "Mp4",
+            "Descripcion" => "20gb",
+            "Precio" => 13
+        ),
+        array(
+            "Producto" => "Raton",
+            "Descripcion" => "6000 dpi",
+            "Precio" => 20
+        ),
+        array(
+            "Producto" => "Alfombrilla",
+            "Descripcion" => "Negra",
+            "Precio" => 30
+        ),
+        array(
+            "Producto" => "Usb",
+            "Descripcion" => "5gb",
+            "Precio" => 5
+        )
     );
     
-    $nombres = $datos['nombres'];
-    $direcciones = $datos['direccion'];
-    $telefonos = $datos['telefono'];
-    $fechas = $datos['fecha'];
-    $colores = $datos['direccion'];
-    $significados = $datos['significado'];
-    
-    echo "<table border=1><tr><th>nombres</th>
-        <th>direccion</th>
-        <th>telefono</th>
-        <th>fecha</th>
-        <th>color</th>
-        <th>significado</th></tr>";
-    
-    
-    
-    
-    for ($i = 0; $i < count($nombres); $i++) {
-        echo "<tr><td>".$nombres[$i]."</td></tr>";
-        echo "<tr><td>".$direcciones[$i]."</td></tr>";
-        echo "<tr><td>".$telefonos[$i]."</td></tr>";
-        echo "<tr><td>".$fechas[$i]."</td></tr>";
-        echo "<tr><td>".$colores[$i]."</td></tr>";
-        echo "<tr><td>".$significados[$i]."</td></tr>";
-    }
-    
+    echo "<body style ='border: 3px solid black'>"; 
+    echo "Bienvenid@ " .$_SESSION["nombre"];
+    echo "<br/><br/>";
+    echo "<table>";
+    foreach ($productos as $propiedad) { 
+        echo "<tr>"; 
+        foreach($propiedad as $valores => $valor){
+            echo "<td> $valores: <strong>$valor</strong></td>";
+        }
+        echo "</tr>"; 
+    } 
     echo "</table>";
-
-    
-
-    
-
-
-
+        
 
 
 
