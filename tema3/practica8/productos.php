@@ -69,14 +69,13 @@
             font-family: 'Playfair Display', serif;
         }
         header {
-            z-index: 100;
-            position: fixed;
-            top: 0;
-            left: 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
             width: 100%;
+            height: 80px;
+            margin-bottom: 10px;
             background-color: #142F43;
-            height: 70px;
-            display: inline-block;
         }
         aside{
             width: 29%;
