@@ -4,7 +4,7 @@
 
     $productos = array(
         array(
-            "Titulo" => "Television 4K",
+            "Producto" => "Television 4K",
             "Descripcion" => "22 pulgadas",
             "Precio" => 210
         ),
@@ -31,29 +31,55 @@
         array(
             "Producto" => "Usb",
             "Descripcion" => "5gb",
-            "Precio" => 5
+            "Precio" => 5,
+            "Cantidad" => 0
         )
     );
-    
-    echo "<body style ='border: 3px solid black'>"; 
-    echo "Bienvenid@ " .$_SESSION["nombre"];
-    echo "<br/><br/>";
-    echo "<table>";
-    foreach ($productos as $propiedad) { 
-        echo "<tr>"; 
-        foreach($propiedad as $valores => $valor){
-            echo "<td> $valores: <strong>$valor</strong></td>";
+?>
+    <html>
+    <style>
+        .contenedor{
+            width: 800px;
+            height: 600px;
+            margin: 20px auto;
+            border: 3px solid black;
         }
-        echo "</tr>"; 
-    } 
-    echo "</table>";
-        
+        .box{
+            float: left;
+            width: 200px;
+            height: 150px;
+            margin-left: 20px;
+            margin-bottom: 20px; 
+        }
+        h1{
+            text-align:center;
+        }
+    </style>
+    </html>
+    <?php
+    echo "<div class='contenedor'>"; 
+    echo "<h1>Bienvenid@ " .$_SESSION["nombre"]. "</h1>";
+
+
+    foreach ($productos as $propiedad) { 
+        echo "<div class='box'>";
+        echo "Producto: ".$propiedad['Producto'];
+        echo "Descripcion: ".$propiedad['Descripcion'];
+        echo "Precio: ".$propiedad['Precio'];
+        echo '<button type="submit" value="$propiedad["Producto"]">añadir al carrito</button>';
+        echo "</div>";
+    }
+    echo "</div>";
+
+
+    echo "<aside></aside>";
 
 
 
 
-    //echo "<h2>Carro:</h2>";
 
-    //echo"<a href="confirmar.php">Confirmar compra</a>";
+    
+
+    
 ?>
     
