@@ -1,19 +1,11 @@
 <!DOCTYPE HTML>  
 <html>
     <head>
-<<<<<<< HEAD
         <style>
             .error {
                 color: #FF0000;
             }
         </style>
-=======
-      <style>
-        .error {
-          color: #FF0000;
-        }
-      </style>
->>>>>>> 12ca35b7c456d14c6b2ce971394da0a147ca2db5
     </head>
     <body>  
 
