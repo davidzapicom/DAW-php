@@ -90,16 +90,8 @@ function limpiar_datos($data) {
     </form>
 
 <?php
-<<<<<<< HEAD
-echo "<h2>Your Input:</h2>";
-echo "$name <br> $email <br> $website <br> $comment <br> $gender";
-?>
-
-    </body>
-=======
 echo "<h2>Tu entrada:</h2><br/> $name <br> $email <br> $website <br> $comment <br> $gender";
 ?>
 
   </body>
->>>>>>> 12ca35b7c456d14c6b2ce971394da0a147ca2db5
 </html>

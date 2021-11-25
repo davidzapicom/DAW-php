@@ -14,8 +14,8 @@
 </head>
 <body>
     <fieldset>
-        <p>Bienvenido introduce tu nombre de usuario y contraseña.</p>
-        <form action="login.php" method="POST">
+        <p>Bienvenido introduce tu nombre de usuario/a y contraseña.</p>
+        <form action="confirmacion.php" method="POST">
             <input type="text" name="nombre"><br/><br/>
             <input type="password" name="contraseña"><br/><br/>
             <input type="submit" name="boton" value="Enviar">
