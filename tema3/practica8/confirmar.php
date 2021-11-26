@@ -8,6 +8,9 @@
 
 
     echo "<h2>Gracias por su compra</h2>";
-    echo "<a href='login.php'>Si</a>";
-    session_destroy();
+    echo "<button>Terminar</button>";
+    
+    if (isset($Terminar)){
+        session_destroy();
+    }
 ?>

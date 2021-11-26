@@ -1,44 +1,7 @@
-<?php
-    session_start();
-    $_SESSION["nombre"] = $_POST["nombre"];
-
-    $productos = array(
-        array(
-            "Producto" => "Television 4K",
-            "Descripcion" => "22 pulgadas",
-            "Precio" => 210
-        ),
-        array(
-            "Producto" => "Movil",
-            "Descripcion" => "4G",
-            "Precio" => 300
-        ),
-        array(
-            "Producto" => "Mp4",
-            "Descripcion" => "20gb",
-            "Precio" => 13
-        ),
-        array(
-            "Producto" => "Raton",
-            "Descripcion" => "6000 dpi",
-            "Precio" => 20
-        ),
-        array(
-            "Producto" => "Alfombrilla",
-            "Descripcion" => "Negra",
-            "Precio" => 30
-        ),
-        array(
-            "Producto" => "Usb",
-            "Descripcion" => "5gb",
-            "Precio" => 5,
-            "Cantidad" => 0
-        )
-    );
-?>
-    <html>
+<html>
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <style>
@@ -66,7 +29,7 @@
             text-align: center;
             text-transform: uppercase;
             padding-left: 10px;
-            font-family: 'Playfair Display', serif;
+            
         }
         header {
             text-align: center;
@@ -77,7 +40,21 @@
             margin-bottom: 10px;
             background-color: #142F43;
         }
-        aside{
+        footer {
+            font-family: 'VT323', monospace;
+            display: flex;
+            background-color: #142F43;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            width: 100%;
+            justify-content: center;
+            align-items:center;
+            color: #F0E9D2;
+            }
+        aside {
             width: 29%;
             float: right;
             height: 584px;
@@ -85,11 +62,11 @@
             margin: 0 auto;
             padding: 10px;
         }
-        aside button{
+        aside button {
             color: #142F43;
             background-color: #F0E9D2;
         }
-        aside button.esp{
+        aside button.esp {
             position: absolute;
             bottom: 130;
             right: 20;
@@ -100,27 +77,23 @@
             background-color: #142F43;
             color: #F0E9D2;
         }
-        button a{
+        button a {
             text-decoration: none;
             color: #142F43;
         }
-        footer {
-        display:flex;
-        background-color: #142F43;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 50px;
-        width: 100%;
-        border-top: 1px solid white;
-        justify-content: center;
-        align-items:center;
-        color: #F0E9D2;
-        }
     </style>
-    </html>
-    <?php
+ </html>
+<?php
+    session_start();
+    $_SESSION["nombre"] = $_POST["nombre"];
+    $productos = array(
+        array("Producto" => "Television 4K", "Descripcion" => "22 pulgadas", "Precio" => 210),
+        array("Producto" => "Movil", "Descripcion" => "4G", "Precio" => 300),
+        array("Producto" => "Mp4", "Descripcion" => "20gb", "Precio" => 13),
+        array("Producto" => "Raton", "Descripcion" => "6000 dpi", "Precio" => 20),
+        array("Producto" => "Alfombrilla", "Descripcion" => "Negra", "Precio" => 30),
+        array("Producto" => "Usb", "Descripcion" => "5gb", "Precio" => 5, "Cantidad" => 0),
+    );
     echo "<header>";
     echo "<h1><i class='fas fa-store'></i> TIENDA ONLINE <i class='fas fa-store'></i></h1>";
     echo "</header>";
@@ -138,20 +111,18 @@
         echo "</div>";
     } 
     echo "</div>";
+
+
     echo "<aside>";
     echo "<h1><i class='fas fa-shopping-bag'></i> carrito</h1>";
-    foreach ($productos as $propiedad) { 
-        echo '<button type="submit" value="$propiedad["Producto"]">Quitar</button>';
+    foreach ($propiedad as $valores) { 
+        echo '<button type="submit" value=".$valores["Producto"]">Quitar</button>';
     }
-    echo '<button class="esp" type="submit"><a href="confirmar.php">Continuar</a></button>';
+    echo '<button class="esp" type="submit"><a href="confirmar.php">Continuar</a> <i class="fas fa-chevron-right"></i></button>';
     echo "</aside>";
     echo "<footer>";
-    echo "<h3>Proyecto carrito PHP David Zapico y Daniel Martinez.</h3>";
+    echo "<h3 class='left'>Proyecto carrito PHP | David Zapico - Daniel Martinez</h3>";
     echo "</footer>";
-    echo "</body>";
-    
-    
-
-    
+    echo "</body>";  
 ?>
     
