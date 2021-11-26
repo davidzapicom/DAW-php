@@ -68,7 +68,7 @@
         }
         aside button.esp {
             position: absolute;
-            bottom: 130;
+            bottom: 160;
             right: 20;
         }
         button{
@@ -101,7 +101,6 @@
     echo "<div class='contenedor'>"; 
     echo "<h1 style='padding-left: 20px;'>Bienvenid@ " .$_SESSION["nombre"]. "!</h1>";
 
-
     foreach ($productos as $propiedad) { 
         echo "<div class='box'>";
         echo "<p>Producto: <strong>".$propiedad['Producto']. "</strong></p>";
@@ -121,7 +120,7 @@
     echo '<button class="esp" type="submit"><a href="confirmar.php">Continuar</a> <i class="fas fa-chevron-right"></i></button>';
     echo "</aside>";
     echo "<footer>";
-    echo "<h3 class='left'>Proyecto carrito PHP | David Zapico - Daniel Martinez</h3>";
+    echo "<h3 class='left'>Proyecto carrito PHP | David Zapico y 'Daniel Martinez'</h3>";
     echo "</footer>";
     echo "</body>";  
 ?>
