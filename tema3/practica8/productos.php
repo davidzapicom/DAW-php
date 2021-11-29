@@ -10,6 +10,12 @@
             font-family: 'Outfit', sans-serif;
             color: #142F43;
             background-color: #F0E9D2;
+            position:relative;
+            z-index:1;
+            height:100%;
+            min-width: 1200px;
+            max-width: 1500px;
+            margin: 0 auto;
         }
         .contenedor{
             width: 69%;
@@ -81,8 +87,15 @@
             text-decoration: none;
             color: #142F43;
         }
+        aside strong{
+            color: #F0E9D2;
+        }
+        aside h3{
+            border: 1.5px solid #F0E9D2;
+            padding: 2px;
+            adjust: content;
+        }
     </style>
- </html>
 <?php
     session_start();
     $_SESSION["nombre"] = $_POST["nombre"];
@@ -96,60 +109,56 @@
             "USB" => array("Producto" => "USB", "Descripcion" => "2Gb", "Precio" => 5, "Cantidad" => 0),
 		);
 	}
-
-
     if (isset($_POST['agregar'])) {
-        $_SESSION['productos'][$_POST['agregar']]["Cantidad"]++;
-        
+        $_SESSION['productos'][$_POST['agregar']]["Cantidad"]++; 
     }
-
-
     if (isset($_POST['quitar'])) {
-        $_SESSION['productos'][$_POST['quitar']]["Cantidad"]--;
+        if ($_SESSION['productos'][$_POST['quitar']]["Cantidad"] != 0) {
+            $_SESSION['productos'][$_POST['quitar']]["Cantidad"]--; 
+        }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    echo "<header>";
-    echo "<h1><i class='fas fa-store'></i> TIENDA ONLINE <i class='fas fa-store'></i></h1>";
-    echo "</header>";
-    echo "<body>";
-    echo "<div class='contenedor'>"; 
-    echo "<h1 style='padding-left: 20px;'>Bienvenid@ " .$_SESSION["nombre"]. "!</h1>";
-
-    foreach ($productos as $propiedad) { 
-        echo "<div class='box'>";
-        echo "<p>Producto: <strong>".$propiedad['Producto']. "</strong></p>";
-        echo "<p>Descripcion: <strong>".$propiedad['Descripcion']. "</strong></p>";
-        echo "<p>Precio: <strong>".$propiedad['Precio']. "€</strong></p>";
-        echo '<button type="submit" name="boton" value="$propiedad["Producto"]">Añadir</button>';
-        echo "</div>";
-    } 
-    
-    echo "</div>";
-
-
-    echo "<aside>";
-    echo "<h1><i class='fas fa-shopping-bag'></i> carrito</h1>";
-    $total = 0;
-	foreach ($_SESSION["productos"] as $indice => $producto) {
-		if ($_SESSION["productos"][$indice]["Cantidad"]>0) {
-		    echo $_SESSION["productos"][$indice]["Cantidad"]."  ".$_SESSION["productos"][$indice]["Producto"];
-		    echo "<br/>";
-		    $total = $total+($_SESSION['productos'][$indice]["Cantidad"]*$_SESSION['productos'][$indice]["Precio"]);
-		}
-	}
-    
-    echo '<button class="esp" type="submit"><a href="confirmar.php">Continuar</a> <i class="fas fa-chevron-right"></i></button>';
-    echo "</aside>";
-    echo "<footer>";
-    echo "<h3 class='left'>Proyecto carrito PHP | David Zapico y Daniel Martinez</h3>";
-    echo "</footer>";
-    echo "</body>";  
 ?>
-    
+    <header>
+        <h1><i class='fas fa-store'></i> TIENDA ONLINE <i class='fas fa-store'></i></h1>
+    </header>
+    <body>
+        <div class='contenedor'>
+        <?php
+        echo "<h1 style='padding-left: 20px;'>Bienvenid@ "  .$_SESSION["nombre"]. "!</h1>";
+        echo'<form action="#" method="POST">';
+        foreach ($_SESSION["productos"] as $indice => $producto) {
+        echo '<div class="box">';
+            $i++;
+            echo '
+                Producto: <span>'.$_SESSION["productos"][$indice]["Producto"].'</span><br/><br/>
+                Descripcion: <strong>'.$_SESSION["productos"][$indice]["Descripcion"].'</strong><br/><br/>
+                Precio: <strong>'.$_SESSION["productos"][$indice]["Precio"].'€</strong><br/><br/>
+                <button type="submit" name="agregar" value="'.$indice.'">Añadir</button>
+                <button type="submit" name="quitar" value="'.$indice.'">Quitar</button>
+                <br/>
+            </div>';
+        }
+        echo '</form>';
+        ?>
+    </div>
+    <aside>
+    <h1><i class='fas fa-shopping-bag'></i> carrito</h1>
+    <?php
+	    $total=0;
+		foreach ($_SESSION["productos"] as $indice => $producto) {
+			if ($_SESSION["productos"][$indice]["Cantidad"] > 0) {
+			    echo "<strong>" .$_SESSION["productos"][$indice]["Cantidad"]."  ".$_SESSION["productos"][$indice]["Producto"]. "</strong>";
+			    echo "<br/>";
+		        $total = $total+($_SESSION['productos'][$indice]["Cantidad"]*$_SESSION['productos'][$indice]["Precio"]);
+			}
+		}
+		echo "<h3><strong>TOTAL: ".$total."€</strong></h3>";
+		echo "<br/><br/>";
+	?>
+    <button class="esp" type="submit"><a href="confirmar.php">Continuar</a> <i class="fas fa-chevron-right"></i></button>
+    </aside>
+    <footer>
+    <h3>Proyecto carrito PHP | David Zapico y Daniel Martinez</h3>
+    </footer>
+    </body>
+</html>
