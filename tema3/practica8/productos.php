@@ -9,6 +9,7 @@
     </head>
 <?php
     session_start();
+    $_SESSION["nombre"] = $_POST["nombre"];
     if (!isset($_SESSION["productos"])) {
 		$_SESSION["productos"] = array(
 			"Televisor" => array("Producto" => "Televisor", "Descripcion" => "22 pulgadas", "Precio" => 210, "Cantidad" => 0),
@@ -34,8 +35,8 @@
     <body>
         <div class='contenedor'>
         <?php
-        $_SESSION["nombre"] = $_POST["nombre"];
-        echo "<h1 style='padding-left: 20px;'>Bienvenid@ "  .$_SESSION["nombre"]. "!</h1>";
+        
+        echo "<h1 style='padding-left: 20px;'>Bienvenid@ "  .$_SESSION['nombre']. "!</h1>";
         echo'<form action="#" method="POST">';
         foreach ($_SESSION["productos"] as $indice => $producto) {
         echo '<div class="box">';
