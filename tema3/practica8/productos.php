@@ -86,14 +86,35 @@
 <?php
     session_start();
     $_SESSION["nombre"] = $_POST["nombre"];
-    $productos = array(
-        array("Producto" => "Television 4K", "Descripcion" => "22 pulgadas", "Precio" => 210),
-        array("Producto" => "Movil", "Descripcion" => "4G", "Precio" => 300),
-        array("Producto" => "Mp4", "Descripcion" => "20gb", "Precio" => 13),
-        array("Producto" => "Raton", "Descripcion" => "6000 dpi", "Precio" => 20),
-        array("Producto" => "Alfombrilla", "Descripcion" => "Negra", "Precio" => 30),
-        array("Producto" => "Usb", "Descripcion" => "5gb", "Precio" => 5, "Cantidad" => 0),
-    );
+    if (!isset($_SESSION["productos"])) {
+		$_SESSION["productos"] = array(
+			"Televisor" => array("Producto" => "Televisor", "Descripcion" => "22 pulgadas", "Precio" => 210, "Cantidad" => 0),
+			"Móvil" => array("Producto" => "Móvil", "Descripcion" => "4G", "Precio" => 300, "Cantidad" => 0),
+			"MP4" => array("Producto" => "MP4", "Descripcion" => "20Gb", "Precio" => 13, "Cantidad" => 0),
+            "Ratón" => array("Producto" => "Ratón", "Descripcion" => "6000dpi", "Precio" => 20, "Cantidad" => 0),
+            "Alfombrilla" => array("Producto" => "Alfombrilla", "Descripcion" => "Negra", "Precio" => 30, "Cantidad" => 0),
+            "USB" => array("Producto" => "USB", "Descripcion" => "2Gb", "Precio" => 5, "Cantidad" => 0),
+		);
+	}
+
+
+    if (isset($_POST['agregar'])) {
+        $_SESSION['productos'][$_POST['agregar']]["Cantidad"]++;
+        
+    }
+
+
+    if (isset($_POST['quitar'])) {
+        $_SESSION['productos'][$_POST['quitar']]["Cantidad"]--;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     echo "<header>";
     echo "<h1><i class='fas fa-store'></i> TIENDA ONLINE <i class='fas fa-store'></i></h1>";
     echo "</header>";
@@ -106,21 +127,28 @@
         echo "<p>Producto: <strong>".$propiedad['Producto']. "</strong></p>";
         echo "<p>Descripcion: <strong>".$propiedad['Descripcion']. "</strong></p>";
         echo "<p>Precio: <strong>".$propiedad['Precio']. "€</strong></p>";
-        echo '<button type="submit" value="$propiedad["Producto"]">Añadir</button>';
+        echo '<button type="submit" name="boton" value="$propiedad["Producto"]">Añadir</button>';
         echo "</div>";
     } 
+    
     echo "</div>";
 
 
     echo "<aside>";
     echo "<h1><i class='fas fa-shopping-bag'></i> carrito</h1>";
-    foreach ($propiedad as $valores) { 
-        echo '<button type="submit" value=".$valores["Producto"]">Quitar</button>';
-    }
+    $total = 0;
+	foreach ($_SESSION["productos"] as $indice => $producto) {
+		if ($_SESSION["productos"][$indice]["Cantidad"]>0) {
+		    echo $_SESSION["productos"][$indice]["Cantidad"]."  ".$_SESSION["productos"][$indice]["Producto"];
+		    echo "<br/>";
+		    $total = $total+($_SESSION['productos'][$indice]["Cantidad"]*$_SESSION['productos'][$indice]["Precio"]);
+		}
+	}
+    
     echo '<button class="esp" type="submit"><a href="confirmar.php">Continuar</a> <i class="fas fa-chevron-right"></i></button>';
     echo "</aside>";
     echo "<footer>";
-    echo "<h3 class='left'>Proyecto carrito PHP | David Zapico y 'Daniel Martinez'</h3>";
+    echo "<h3 class='left'>Proyecto carrito PHP | David Zapico y Daniel Martinez</h3>";
     echo "</footer>";
     echo "</body>";  
 ?>
