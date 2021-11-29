@@ -12,20 +12,20 @@
     $_SESSION["nombre"] = $_POST["nombre"];
     if (!isset($_SESSION["productos"])) {
 		$_SESSION["productos"] = array(
-			"Televisor" => array("Producto" => "Televisor", "Descripcion" => "22 pulgadas", "Precio" => 210, "Cantidad" => 0),
-			"Móvil" => array("Producto" => "Móvil", "Descripcion" => "4G", "Precio" => 300, "Cantidad" => 0),
-			"MP4" => array("Producto" => "MP4", "Descripcion" => "20Gb", "Precio" => 13, "Cantidad" => 0),
-            "Ratón" => array("Producto" => "Ratón", "Descripcion" => "6000dpi", "Precio" => 20, "Cantidad" => 0),
-            "Alfombrilla" => array("Producto" => "Alfombrilla", "Descripcion" => "Negra", "Precio" => 30, "Cantidad" => 0),
-            "USB" => array("Producto" => "USB", "Descripcion" => "2Gb", "Precio" => 5, "Cantidad" => 0),
+			"Televisor" => array("Producto" => "Televisor", "Descripcion" => "22 pulgadas", "Precio" => 210, "cantidad" => 0),
+			"Móvil" => array("Producto" => "Móvil", "Descripcion" => "4G", "Precio" => 300, "cantidad" => 0),
+			"MP4" => array("Producto" => "MP4", "Descripcion" => "20Gb", "Precio" => 13, "cantidad" => 0),
+            "Ratón" => array("Producto" => "Ratón", "Descripcion" => "6000dpi", "Precio" => 20, "cantidad" => 0),
+            "Alfombrilla" => array("Producto" => "Alfombrilla", "Descripcion" => "Negra", "Precio" => 30, "cantidad" => 0),
+            "USB" => array("Producto" => "USB", "Descripcion" => "2Gb", "Precio" => 5, "cantidad" => 0),
 		);
 	}
     if (isset($_POST['anadir'])) {
-        $_SESSION['productos'][$_POST['anadir']]["Cantidad"]++; 
+        $_SESSION['productos'][$_POST['anadir']]["cantidad"]++; 
     }
     if (isset($_POST['quitar'])) {
-        if ($_SESSION['productos'][$_POST['quitar']]["Cantidad"] != 0) {
-            $_SESSION['productos'][$_POST['quitar']]["Cantidad"]--; 
+        if ($_SESSION['productos'][$_POST['quitar']]["cantidad"] != 0) {
+            $_SESSION['productos'][$_POST['quitar']]["cantidad"]--; 
         }
     }
 ?>
@@ -35,7 +35,6 @@
     <body>
         <div class='contenedor'>
         <?php
-        
         echo "<h1 style='padding-left: 20px;'>Bienvenid@ "  .$_SESSION['nombre']. "!</h1>";
         echo'<form action="#" method="POST">';
         foreach ($_SESSION["productos"] as $indice => $producto) {
@@ -58,9 +57,9 @@
     <?php
         $total = 0;
 		foreach ($_SESSION["productos"] as $indice => $producto) {
-			if ($_SESSION["productos"][$indice]["Cantidad"] > 0) {
-			    echo "<strong><li>" .$_SESSION["productos"][$indice]["Cantidad"]."  ".$_SESSION["productos"][$indice]["Producto"]. "</li></strong>";
-		        $total = $total + ($_SESSION['productos'][$indice]["Cantidad"] * $_SESSION['productos'][$indice]["Precio"]);
+			if ($_SESSION["productos"][$indice]["cantidad"] > 0) {
+			    echo "<strong><li>" .$_SESSION["productos"][$indice]["cantidad"]."  ".$_SESSION["productos"][$indice]["Producto"]. "</li></strong>";
+		        $total = $total + ($_SESSION['productos'][$indice]["cantidad"] * $_SESSION['productos'][$indice]["Precio"]);
 			}
 		}
 		echo "<h3><strong>TOTAL: ".$total."€</strong></h3>";

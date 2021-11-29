@@ -8,19 +8,17 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        <h1>Felicidades!</h1>
+        <h2>Usted acaba de adquirir:</h2>
 <?php
     session_start();
-    echo "<h1>Felicidades!</h1>";
-    echo "<h2>Usted acaba de adquirir:</h2>";
     foreach ($_SESSION["productos"] as $indice => $producto) {
-		if ($_SESSION["productos"][$indice]["Cantidad"] > 0) {
-			echo "<strong><li>" .$_SESSION["productos"][$indice]["Cantidad"]."  ".$_SESSION["productos"][$indice]["Producto"]. "</li></strong>";
+		if ($_SESSION["productos"][$indice]["cantidad"] > 0) {
+			echo "<strong><li>" .$_SESSION["productos"][$indice]["cantidad"]."  ".$_SESSION["productos"][$indice]["Producto"]. "</li></strong>";
 		}
 	}
     echo "<h3><strong>TOTAL: " .$_SESSION['total']. "€</strong></h3>";
-?>
-    <h2>Gracias por su compra.</h2>
-<?php
+    echo "<h2>Gracias por su compra.</h2>";
     session_destroy();
 ?>
     </body>
