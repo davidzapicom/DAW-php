@@ -9,7 +9,9 @@
     </head>
 <?php
     session_start();
-    $_SESSION["nombre"] = $_POST["nombre"];
+    if (isset($_POST['boton'])){
+        $_SESSION["nombre"] = $_POST["nombre"];
+    }
     if (!isset($_SESSION["productos"])) {
 		$_SESSION["productos"] = array(
 			"Televisor" => array("Producto" => "Televisor", "Descripcion" => "22 pulgadas", "Precio" => 210, "cantidad" => 0),
@@ -39,7 +41,6 @@
         echo'<form action="#" method="POST">';
         foreach ($_SESSION["productos"] as $indice => $producto) {
         echo '<div class="box">';
-            $i++;
             echo '
                 Producto: <span>'.$_SESSION["productos"][$indice]["Producto"].'</span><br/><br/>
                 Descripcion: <strong>'.$_SESSION["productos"][$indice]["Descripcion"].'</strong><br/><br/>
@@ -63,7 +64,6 @@
 			}
 		}
 		echo "<h3><strong>TOTAL: ".$total."€</strong></h3>";
-		echo "<br/><br/>";
         if ($total != 0) {
             echo '<button class="esp" type="submit"><a href="confirmar.php">Continuar</a> <i class="fas fa-chevron-right"></i></button>';
         }
