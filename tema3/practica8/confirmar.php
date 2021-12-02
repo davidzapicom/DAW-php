@@ -18,8 +18,8 @@
 		}
 	}
     echo "<h3><strong>TOTAL: " .$_SESSION['total']. "€</strong></h3>";
-    echo "<h2>Gracias por su compra.</h2>";
     session_destroy();
 ?>
+        <h2>Gracias por su compra.</h2>
     </body>
 </html>
