@@ -17,7 +17,6 @@ if (!isset($_SESSION['numero'])) {
             <button type="submit" name="restar" value="">-</button>
 <?php 
     echo "<span> $_SESSION[numero] </span>";
-
 ?>
             <button type="submit" name="sumar" value="">+</button>
             <br/>
