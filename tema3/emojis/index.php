@@ -20,10 +20,6 @@
           border: 1px solid black;
         }
 
-        img {
-
-        }
-
         button {
           padding: 10px;
           border: 1px solid black;
@@ -34,6 +30,7 @@
 </head>
 <body>
 <?php
+
 
 
 
