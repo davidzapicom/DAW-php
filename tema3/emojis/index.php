@@ -35,18 +35,18 @@
 <body>
     <table>
         <tr>
-          <td><img src="img/cool.png" width="35%" alt="cool"></td>
-          <td><img src="img/crazy.png" width="30%" alt="crazy"></td>
-          <td><img src="img/shit.png" width="10%" alt="shit"></td>
+          <td><img src="img/img1.png" width="35%" alt=""></td>
+          <td><img src="img/img2.png" width="30%" alt="crazy"></td>
+          <td><img src="img/img3.png" width="10%" alt="shit"></td>
         </tr>
         <tr>
-          <td><img src="img/laugh.png" width="30%" alt="laugh"></td>
-          <td><img src="img/smile.png" width="30%" alt="smile"></td>
-          <td><img src="img/think.png" width="10%" alt="think"></td>
+          <td><img src="img/img4.png" width="30%" alt="laugh"></td>
+          <td><img src="img/img5.png" width="30%" alt="smile"></td>
+          <td><img src="img/img6.png" width="10%" alt="think"></td>
         </tr>
       </table>
       <br/>
-      <form action="#" method="POST">
+      <form action="#" method="post">
         <input type="submit" name="boton" value="Barajar">
       </form>
 <?php
