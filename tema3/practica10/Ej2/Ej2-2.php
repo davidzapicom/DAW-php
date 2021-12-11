@@ -1,12 +1,12 @@
 <?php
 
 // Accedemos a la sesión
-session_name("sesiones-1-12");
+session_name("Ej2");
 session_start();
 
 // Si la posición no está guardada en la sesión, redirigimos a la primera página
 if (!isset($_SESSION["posicion"])) {
-    header("Location:sesiones-1-12-1.php");
+    header("Location:Ej2-2.php");
     exit;
 }
 
@@ -46,4 +46,4 @@ if ($_SESSION["posicion"] > 300) {
 }
 
 // Volvemos al formulario
-header("Location:sesiones-1-12-1.php");
+header("Location:Ej2.php");
