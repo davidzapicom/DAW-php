@@ -1,6 +1,6 @@
 <?php
 // Accedemos a la sesión
-session_name("sesiones-1-11");
+session_name("Ej1");
 session_start();
 
 // Si el número no está guardado en la sesión, ponemos el valor a cero
@@ -25,7 +25,7 @@ if (!isset($_SESSION["numero"])) {
 <body>
   <h1>Subir y bajar número</h1>
 
-  <form action="sesiones-1-11-2.php" method="get">
+  <form action="Ej1-2.php" method="get">
     <p>Haga clic en los botones para modificar el valor:</p>
 
     <p>

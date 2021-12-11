@@ -1,12 +1,12 @@
 <?php
 
 // Accedemos a la sesión
-session_name("sesiones-1-11");
+session_name("Ej1");
 session_start();
 
 // Si el número no está guardado en la sesión, redirigimos a la primera página
 if (!isset($_SESSION["numero"])) {
-    header("Location:sesiones-1-11-1.php");
+    header("Location:Ej1.php");
     exit;
 }
 
@@ -39,4 +39,4 @@ if ($accion == "cero") {
 }
 
 // Volvemos al formulario
-header("Location:sesiones-1-11-1.php");
+header("Location:Ej1.php");
