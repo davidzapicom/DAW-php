@@ -23,12 +23,12 @@
  */
 
 // Accedemos a la sesión
-session_name("sesiones-1-14");
+session_name("Ej4");
 session_start();
 
 // Si alguno de los números de votos no está guardado en la sesión, redirigimos a la primera página
 if (!isset($_SESSION["a"]) || !isset($_SESSION["b"])) {
-    header("Location:sesiones-1-14-1.php");
+    header("Location:Ej4.php");
     exit;
 }
 
@@ -61,4 +61,4 @@ if ($accion == "a") {
 }
 
 // Volvemos al formulario
-header("Location:sesiones-1-14-1.php");
+header("Location:Ej4.php");

@@ -1,7 +1,7 @@
 <?php
 
 // Accedemos a la sesión
-session_name("sesiones-1-13");
+session_name("Ej3");
 session_start();
 
 // Si alguna posición no está guardada en la sesión, ponemos los dos valores a cero
@@ -26,7 +26,7 @@ if (!isset($_SESSION["x"]) || !isset($_SESSION["y"])) {
 <body>
   <h1>Mover un punto en dos dimensiones</h1>
 
-  <form action="sesiones-1-13-2.php" method="get">
+  <form action="Ej3-2.php" method="get">
     <p>Haga clic en los botones para mover el punto:</p>
 
     <table>

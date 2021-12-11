@@ -1,7 +1,7 @@
 <?php
 
 // Accedemos a la sesión
-session_name("sesiones-1-14");
+session_name("Ej4");
 session_start();
 
 // Si algún contador no está guardado en la sesión, ponemos ambos a cero
@@ -26,7 +26,7 @@ if (!isset($_SESSION["a"]) || !isset($_SESSION["b"])) {
 <body>
   <h1>Votar una opción</h1>
 
-  <form action="sesiones-1-14-2.php" method="get">
+  <form action="Ej4-2.php" method="get">
     <p>Haga clic en los botones para votar por una opción:</p>
 
     <table>
