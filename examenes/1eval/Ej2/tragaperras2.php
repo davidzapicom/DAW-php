@@ -43,18 +43,16 @@ if ($accion == "jugar" && $_SESSION["monedas"] > 0) {
 
     if ($_SESSION["fruta1"] && $_SESSION["fruta2"] && $_SESSION["fruta3"]) {
         $_SESSION["premio"] += 5;
+        $_SESSION["aviso"] = "ENHORABUENA!!! ha ganado 5 puntos.";
     
     } elseif (($_SESSION["fruta1"] && $_SESSION["fruta2"]) ||
         ($_SESSION["fruta2"] && $_SESSION["fruta3"]) ||
         ($_SESSION["fruta1"] && $_SESSION["fruta3"])) {
         $_SESSION["premio"] += 2;
+        $_SESSION["aviso"] = "ENHORABUENA!!! ha ganado 2 puntos.";
     } else {
         $_SESSION["premio"] += 0;
     }
-}
-
-if ($_SESSION["premio"] >= 1) {
-    $_SESSION["aviso"] = "ENHORABUENA!!! ha ganado " .$_SESSION["premio"]. " puntos.";
 }
 
 if ($_SESSION["monedas"] == 0) {
