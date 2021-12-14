@@ -17,16 +17,7 @@ function recoge($var, $m = "")
     return $tmp;
 }
 
-$simNum = 8;   
-
-$cereza = 1;
-$piña = 2;
-$limon = 3;
-$fresa = 4;
-$platano = 5;
-$naranja = 6;
-$sandia = 7;
-$uvas = 8;
+$simNum = 8;
 
 if (!isset($_SESSION["monedas"]) || !isset($_SESSION["fruta1"]) ||
     !isset($_SESSION["fruta2"]) || !isset($_SESSION["fruta3"]) || !isset($_SESSION["premio"])) {
@@ -50,12 +41,12 @@ if ($accion == "jugar" && $_SESSION["monedas"] > 0) {
 
     $_SESSION["monedas"] -= 1;
 
-    if ($_SESSION["fruta1"] == $cereza && $_SESSION["fruta2"] == $cereza && $_SESSION["fruta3"] == $cereza) {
+    if ($_SESSION["fruta1"] && $_SESSION["fruta2"] && $_SESSION["fruta3"]) {
         $_SESSION["premio"] += 5;
     
-    } elseif (($_SESSION["fruta1"] == $cereza && $_SESSION["fruta2"] == $cereza) ||
-        ($_SESSION["fruta2"] == $cereza && $_SESSION["fruta3"] == $cereza) ||
-        ($_SESSION["fruta1"] == $cereza && $_SESSION["fruta3"] == $cereza)) {
+    } elseif (($_SESSION["fruta1"] && $_SESSION["fruta2"]) ||
+        ($_SESSION["fruta2"] && $_SESSION["fruta3"]) ||
+        ($_SESSION["fruta1"] && $_SESSION["fruta3"])) {
         $_SESSION["premio"] += 2;
     } else {
         $_SESSION["premio"] += 0;
