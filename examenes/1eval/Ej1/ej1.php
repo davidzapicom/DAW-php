@@ -1,15 +1,33 @@
 <?php
-$fichero = fopen("primero.txt", "r");
-echo fread($fichero, filesize("primero.txt")) ;
-fclose($fichero);
+$primero = fopen('primero.txt', 'r');
+$i=0;
+while (false !== ($carácter = fgetc($primero))) {
+   $palabras[0][$i]=$carácter;
+   $i++;
+}
+fclose($primero);
 
-$fichero2 = fopen("segundo.txt", "r");
-echo fread($fichero2, filesize("segundo.txt")) ;
-fclose($fichero2);
+$segundo = fopen('segundo.txt', 'r');
+$y=0;
+while (false !== ($carácter = fgetc($segundo))) {
+   $palabras[1][$y]=$carácter;
+   $y++;
+}
+fclose($segundo);
+echo "El primer fichero contiene: ";
+for ($i=0; $i < 9; $i++) { 
+    echo  $palabras[0][$i].",";
+}
+echo "<br/>";
+echo "El Segundo fichero contiene: ";
 
-$fichero = fopen("Prueba.txt", "a");
-fwrite($fichero, "Estoy en clase de php" . PHP_EOL);
-fclose($fichero);
-
-
+for ($i=0; $i < 9; $i++) { 
+    echo  $palabras[1][$i].",";
+}
+echo "<br/>";
+echo "Los fichero intercalados contienen: ";
+for ($i=0; $i < 9; $i++) { 
+    echo  $palabras[0][$i].",";
+    echo  $palabras[1][$i].",";
+}
 ?>

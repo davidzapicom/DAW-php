@@ -4,7 +4,6 @@ session_start();
 
 $simNum = 8;
 
-
 if (!isset($_SESSION["monedas"]) || !isset($_SESSION["fruta1"]) ||
     !isset($_SESSION["fruta2"]) || !isset($_SESSION["fruta3"])) {
     $_SESSION["monedas"] = 0;
