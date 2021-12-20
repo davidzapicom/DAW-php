@@ -72,7 +72,6 @@ function limpiar_datos($data) {
   return $data;
 }
 
-
 $enlace = mysqli_connect('localhost','uscomprobacion','','control-usuarios');
 
 $usuario = "SELECT usuario,pass,rol FROM usuarios WHERE usuario='$_POST[usu]' and pass='$_POST[pass]'");
