@@ -71,12 +71,19 @@ function limpiar_datos($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
+
+
+$enlace = mysqli_connect('localhost','root','','control-usuarios');
+
+mysqli_query($enlace, "SELECT usuario,pass,rol FROM usuarios WHERE usuario= $_POST[] and pass= ");
+
+mysqli_close($enlace);
 ?>
     <div class="contenedor">
         <h2>LOGIN</h2>
         <p><span class="error">* Campos requeridos.</span></p>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-            Usuario: <input type="text" name="name" value="<?php echo $name;?>">
+            Usuarie: <input type="text" name="name" value="<?php echo $name;?>">
             <span class="error">* <?php echo $nameErr;?></span>
             <br/><br/>
             Clave: <input type="password" name="pass" value="<?php echo $pass;?>">
