@@ -2,6 +2,13 @@
 session_name("tragaperras");
 session_start();
 
+$_SESSION["monedas"] = 0;
+$_SESSION["fruta1"] = rand(1, $simNum);
+$_SESSION["fruta2"] = rand(1, $simNum);
+$_SESSION["fruta3"] = rand(1, $simNum);
+$_SESSION["premio"] = 0;
+$_SESSION["aviso"]= "";
+
 function recoge($var, $m = "")
 {
     if (!isset($_REQUEST[$var])) {
