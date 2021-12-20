@@ -41,17 +41,17 @@
     </head>
     <body>
 <?php
-$nameErr = $passErr = "";
-$name = $pass = "";
+$usuErr = $passErr = "";
+$usu = $pass = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "post") {
-  if (empty($_POST["name"])) {
-    $nameErr = "Nombre requerido";
+  if (empty($_POST["usu"])) {
+    $usuErr = "Nombre requerido";
   } else {
-    $name = limpiar_datos($_POST["name"]);
+    $usu = limpiar_datos($_POST["usu"]);
     // comprobar si el nombre contiene solo letras y espacios en blanco.
-    if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-      $nameErr = "Solo se aceptan letras y espacios en blanco.";
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$usu)) {
+      $usuErr = "Solo se aceptan letras y espacios en blanco.";
     }
   }
   
@@ -73,18 +73,19 @@ function limpiar_datos($data) {
 }
 
 
-$enlace = mysqli_connect('localhost','root','','control-usuarios');
+$enlace = mysqli_connect('localhost','uscomprobacion','','control-usuarios');
 
-mysqli_query($enlace, "SELECT usuario,pass,rol FROM usuarios WHERE usuario= $_POST[] and pass= ");
+$usuario = "SELECT usuario,pass,rol FROM usuarios WHERE usuario='$_POST[usu]' and pass='$_POST[pass]'");
 
 mysqli_close($enlace);
+
 ?>
     <div class="contenedor">
         <h2>LOGIN</h2>
         <p><span class="error">* Campos requeridos.</span></p>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-            Usuarie: <input type="text" name="name" value="<?php echo $name;?>">
-            <span class="error">* <?php echo $nameErr;?></span>
+            Usuario/a: <input type="text" name="namusue" value="<?php echo $usu;?>">
+            <span class="error">* <?php echo $usuErr;?></span>
             <br/><br/>
             Clave: <input type="password" name="pass" value="<?php echo $pass;?>">
             <span class="error">* <?php echo $passErr;?></span>
