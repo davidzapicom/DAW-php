@@ -5,12 +5,10 @@ session_start();
         if(empty($_POST['UName']) || empty($_POST['Password'])) {
             header("location:index.php?Empty= Please Fill in the Blanks");
         } else {
-            $query="select * from usuarios where usuario='".$_POST['UName']."' and password='".$_POST['Password']."'";
+            $query="SELECT * FROM usuarios where usuario='".$_POST['Name']."' and password='".$_POST['Password']."'";
             $result=mysqli_query($con,$query);
-
             if(mysqli_fetch_assoc($result)) {
-                $_SESSION['User']=$_POST['UName'];
-                
+                $_SESSION['User']=$_POST['Name'];
                 header("location:wellcome.php");
             } else {
                 header("location:index.php?Invalid= Please Enter Correct User Name and Password ");
