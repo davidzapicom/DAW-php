@@ -11,17 +11,18 @@ $pass = $_SESSION['Password'] = $_POST['Password'];
             $result=mysqli_query($con,$sentencia);
             $fetch = mysqli_fetch_assoc($result);
             mysqli_close($con);
+            $rol = $_SESSION['rol'] = $fetch['rol'];
             if (mysqli_num_rows($result) == 0) {
                 echo "Este usario no existe";
             } else {
-                if ($fetch['rol'] == 'consultor') {
+                if ($rol == 'consultor') {
                     $con=mysqli_connect('localhost','consultor','consultor','ventas');
                 } else {
                     $con=mysqli_connect('localhost','administrador','administrador','ventas');
                 }
-                header("location:wellcome.php");
-            echo 'Hola ' .$name. ', eres ' .$fetch['rol']. ".";
+            header("location:wellcome.php");
         }
     }
 }
+
 ?>
