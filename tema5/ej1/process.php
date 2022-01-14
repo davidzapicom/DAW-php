@@ -24,5 +24,4 @@ $pass = $_SESSION['Password'] = $_POST['Password'];
         }
     }
 }
-
 ?>

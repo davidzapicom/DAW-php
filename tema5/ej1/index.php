@@ -27,9 +27,9 @@
                         <input type="password" class="form-control" placeholder="Contraseña" name="Password" required/>
                     </div>
 
-                    <button name="Login" class="btn btn-outline-primary btn-lg btn-block">LogIn</button>
+                    <button name="Login" class="btn btn-outline-primary btn-lg btn-block">Login</button>
                 </form>
-                <a href=""></a>
+                <p>Si aún no tienes una cuenta <a href="register.php">Registrarse</a></p>
             </div>
         </div>
     </div>
