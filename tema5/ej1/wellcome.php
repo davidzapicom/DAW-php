@@ -3,11 +3,12 @@
     $name = $_SESSION['Name'];
     $rol = $_SESSION['rol'];
     if(isset($_SESSION['Name'])) {
-        echo 'Hola ' . $name. ' ' .$rol. '.<br/>';
+        echo '<h3>Hola ' . $name. ' ' .$rol. '.</h3>';
         echo '<a href="logout.php">Logout</a>';
         if($rol == 'consultor') {
             require("consult.php");
         } else if ($rol == 'administrador') {
+            require("consult.php");
             require("insert.php");
         }
     } else {

@@ -29,7 +29,13 @@
                     <div class="form-group">
                         <input type="password" class="form-control" placeholder="Repite la contraseña" name="Password" required/>
                     </div>
-
+                    <div class="form-group">
+                        <label for="cars">Elige tu rol:</label>
+                        <select>
+                            <option value="consultor">Consultor</option>
+                            <option value="administrador">Administrador</option>  
+                        </select>
+                    </div>            
                     <button name="Register" class="btn btn-outline-primary btn-lg btn-block">Registrarse</button>
                 </form>
                 <p>Si ya tienes una cuenta <a href="index.php">Iniciar sesión</a></p>
