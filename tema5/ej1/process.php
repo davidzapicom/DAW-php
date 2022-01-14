@@ -56,6 +56,7 @@ $caracteristicas = $_SESSION['caracteristicas'] = $_POST['caracteristicas'];
 
     //INSERTAR ARTICULO
     if(isset($_POST['Insert'])) {
+        //validar rol
         if(empty($_POST['id_articulo']) || empty($_POST['descripcion']) || empty($_POST['precio']) || empty($_POST['caracteristicas'])) {
             header("location:insert.php");
         } else {

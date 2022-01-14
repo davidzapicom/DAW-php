@@ -27,7 +27,7 @@
                         <input type="password" class="form-control" placeholder="Contraseña" name="Password" required/>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Repite la contraseña" name="Password" required/>
+                        <input type="password" class="form-control" placeholder="Repite la contraseña" name="Password2" required/>
                     </div>
                     <div class="form-group">
                         <label for="cars">Elige tu rol:</label>
