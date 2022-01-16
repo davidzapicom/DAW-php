@@ -18,16 +18,14 @@
                     <h3>Login</h3>
 
                     <div class="form-group">
-                        <label>Nombre</label>
                         <input type="text" class="form-control" placeholder="Nombre de usuario" name="Name" required/>
                     </div>
 
                     <div class="form-group">
-                        <label>Contraseña</label>
                         <input type="password" class="form-control" placeholder="Contraseña" name="Password" required/>
                     </div>
 
-                    <button name="Login" class="btn btn-outline-primary btn-lg btn-block">Login</button>
+                    <button name="Login" class="btn btn-outline-primary btn-lg btn-block">Iniciar sesion</button>
                 </form>
                 <p>Si aún no tienes una cuenta <a href="register.php">Registrarse</a></p>
             </div>
