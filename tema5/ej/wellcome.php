@@ -8,8 +8,8 @@
         if($rol == 'consultor') {
             require("consult.php");
         } else if ($rol == 'administrador') {
-            require("consult.php");
             require("insert.php");
+            require("consult.php");
         }
     } else {
         header("location:index.php");

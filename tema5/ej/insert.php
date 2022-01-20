@@ -11,15 +11,39 @@
     <title>Insertar</title>
 </head>
 <body>
+<?php
+if(isset($_POST['Insert'])) {
+    if(empty($_POST['Id articulo']) || empty($_POST[''])) {
+        header("location:index.php");
+    } else {
+        $sentencia="SELECT * FROM usuarios where usuario='$name' and password='$pass'";
+        $con=mysqli_connect('localhost','root','','ventas');
+        $result=mysqli_query($con,$sentencia);
+        $fetch = mysqli_fetch_assoc($result);
+        mysqli_close($con);
+        $rol = $_SESSION['rol'] = $fetch['rol'];
+        if (mysqli_num_rows($result) >= 1) {
+            echo "Ya existe un articulo con esos atributos.";
+        } else {
+            if ($rol == 'consultor') {
+                $con=mysqli_connect('localhost','consultor','consultor','ventas');
+            } else {
+                $con=mysqli_connect('localhost','administrador','administrador','ventas');
+            }
+        header("location:wellcome.php");
+        }
+    }
+}
+?>
     <div class="App">
         <div class="vertical-center">
             <div class="inner-block">
-                <form action="process.php" method="post">
+                <form action="#.php" method="post">
                     <h3>Insertar articulo</h3>
 
                     <div class="form-group">
                         <label>Id articulo</label>
-                        <input type="text" class="form-control" placeholder="Id articulo" name="id_articulo" required/>
+                        <input type="number" class="form-control" placeholder="Id articulo" name="id_articulo" required/>
                     </div>
                     <div class="form-group">
                         <label>Descripcion</label>
@@ -33,7 +57,6 @@
                         <label>Características</label>
                         <input type="text" class="form-control" placeholder="Características" name="caracteristicas" required/>
                     </div>
-
                     <button name="Insert" class="btn btn-outline-primary btn-lg btn-block">Insertar</button>
                 </form>
             </div>

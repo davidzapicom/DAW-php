@@ -16,7 +16,7 @@ $pass = $_SESSION['Password'] = $_POST['Password'];
             $rol = $_SESSION['rol'] = $fetch['rol'];
             if (mysqli_num_rows($result) == 0) {
                 echo "Este usario no existe";
-                echo "<a href="index.php">Volver al inicio</a>";
+                echo "<a href='index.php'>Volver al inicio</a>";
             } else {
                 if ($rol == 'consultor') {
                     $con=mysqli_connect('localhost','consultor','consultor','ventas');
