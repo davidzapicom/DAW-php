@@ -16,8 +16,10 @@ if(isset($_POST['Register'])) {
     $name = $_POST['name'];
     $password = $_POST['password'];
     $password2 = $_POST['password2'];
+    $pass = hash_hmac('sha256', 'The quick brown fox jumped over the lazy dog.', 'secret');
+
     if(empty($name) || empty($password) || empty($password2)) {
-        header("location:index.php");
+        header("location:register.php");
     } else {
         $sentencia="SELECT * FROM usuarios where name='$name' AND password='$password'";
         $con = mysqli_connect('localhost','administrador','administrador','ventas');
