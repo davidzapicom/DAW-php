@@ -11,23 +11,50 @@
     <title>Registrarse</title>
 </head>
 <body>
+<?php
+if(isset($_POST['Register'])) {
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+    $password2 = $_POST['password2'];
+    if(empty($name) || empty($password) || empty($password2)) {
+        header("location:index.php");
+    } else {
+        $sentencia="SELECT * FROM usuarios where name='$name' AND password='$password'";
+        $con = mysqli_connect('localhost','administrador','administrador','ventas');
+        $result = mysqli_query($con,$sentencia);
+        $fetch = mysqli_fetch_assoc($result);
+        
+        if (mysqli_num_rows($result) >= 1) {
+            echo "Ya existe un articulo con esos atributos.";
+        } else {
+            $sql="INSERT INTO () VALUES ($ ,'$ ',$ ,'$ ')";
+            if(mysqli_query($con, $sql)){
+                echo "Usuario registrado correctamente.";
+            } else{
+                echo "ERROR: no se ha podido registrar el usuario.";
+            }
+        }
+    mysqli_close($con);
+    }
+}
+?>
     <div class="App">
         <div class="vertical-center">
             <div class="inner-block">
-                <form action="process.php" method="post">
+                <form action="#" method="post">
                     <h3>Registrarse</h3>
 
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" class="form-control" placeholder="Nombre de usuario" name="Name" required/>
+                        <input type="text" class="form-control" placeholder="Nombre de usuario" name="name" required/>
                     </div>
 
                     <div class="form-group">
                         <label>Contraseña</label>
-                        <input type="password" class="form-control" placeholder="Contraseña" name="Password" required/>
+                        <input type="password" class="form-control" placeholder="Contraseña" name="password" required/>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Repite la contraseña" name="Password2" required/>
+                        <input type="password" class="form-control" placeholder="Repite la contraseña" name="password2" required/>
                     </div>
                     <div class="form-group">
                         <label for="cars">Elige tu rol:</label>

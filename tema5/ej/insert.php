@@ -13,32 +13,36 @@
 <body>
 <?php
 if(isset($_POST['Insert'])) {
-    if(empty($_POST['Id articulo']) || empty($_POST[''])) {
+    $id_articulo = $_POST['id_articulo'];
+    $descripcion = $_POST['descripcion'];
+    $precio = $_POST['precio'];
+    $caracteristicas = $_POST['caracteristicas'];
+    if(empty($id_articulo) || empty($descripcion) || empty($precio)) {
         header("location:index.php");
     } else {
-        $sentencia="SELECT * FROM usuarios where usuario='$name' and password='$pass'";
-        $con=mysqli_connect('localhost','root','','ventas');
-        $result=mysqli_query($con,$sentencia);
+        $sentencia="SELECT * FROM articulos where id_articulo='$id_articulo'";
+        $con = mysqli_connect('localhost','administrador','administrador','ventas');
+        $result = mysqli_query($con,$sentencia);
         $fetch = mysqli_fetch_assoc($result);
-        mysqli_close($con);
-        $rol = $_SESSION['rol'] = $fetch['rol'];
+        
         if (mysqli_num_rows($result) >= 1) {
             echo "Ya existe un articulo con esos atributos.";
         } else {
-            if ($rol == 'consultor') {
-                $con=mysqli_connect('localhost','consultor','consultor','ventas');
-            } else {
-                $con=mysqli_connect('localhost','administrador','administrador','ventas');
+            $sql="INSERT INTO articulos (id_articulo, descripcion, precio, caracteristicas) VALUES ($id_articulo,'$descripcion',$precio,'$caracteristicas')";
+            if(mysqli_query($con, $sql)){
+                echo "Articulo insertado correctamente.";
+            } else{
+                echo "ERROR: no se ha podido insertar el articulo.";
             }
-        header("location:wellcome.php");
         }
+    mysqli_close($con);
     }
 }
 ?>
     <div class="App">
         <div class="vertical-center">
             <div class="inner-block">
-                <form action="#.php" method="post">
+                <form action="#" method="post">
                     <h3>Insertar articulo</h3>
 
                     <div class="form-group">
@@ -55,7 +59,7 @@ if(isset($_POST['Insert'])) {
                     </div>
                     <div class="form-group">
                         <label>Características</label>
-                        <input type="text" class="form-control" placeholder="Características" name="caracteristicas" required/>
+                        <input type="text" class="form-control" placeholder="Caracteristicas" name="caracteristicas" required/>
                     </div>
                     <button name="Insert" class="btn btn-outline-primary btn-lg btn-block">Insertar</button>
                 </form>
