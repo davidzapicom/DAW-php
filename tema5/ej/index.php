@@ -11,10 +11,41 @@
     <title>LogIn</title>
 </head>
 <body>
+<?php 
+$error = "";
+    if(isset($_POST['Login'])) {
+        $name = $_POST['Name'];
+        $password = $_POST['Password'];
+        if(empty($_POST['Name']) || empty($_POST['Password'])) {
+            header("location:index.php");
+        } else {
+            $pass = hash_hmac('sha512', '$password', 'secret');
+            $sentencia = "SELECT * FROM usuarios where usuario='$name' and password='$pass'";
+            $con = mysqli_connect('localhost','root','','ventas');
+            $result = mysqli_query($con,$sentencia);
+            $fetch = mysqli_fetch_assoc($result);
+            $rol = $fetch['rol'];
+            //var_dump($result);
+            mysqli_close($con);
+            if (mysqli_num_rows($result) == 0) {
+                $error = "Este usario no existe";
+            } else {
+                echo '<h3>Hola ' . $name. ' ' .$rol. '.</h3>';
+                echo '<a href="logout.php">Cerrar sesión</a>';
+                if($rol == 'consultor') {
+                    require("consult.php");
+                } else if ($rol == 'administrador') {
+                    require("insert.php");
+                    require("consult.php");
+                }
+            }
+        }
+    }     
+?>
     <div class="App">
         <div class="vertical-center">
             <div class="inner-block">
-                <form action="process.php" method="post">
+                <form action="#" method="post">
                     <h3>Login</h3>
 
                     <div class="form-group">
@@ -23,6 +54,7 @@
 
                     <div class="form-group">
                         <input type="password" class="form-control" placeholder="Contraseña" name="Password" required/>
+                        <p><?php echo $error; ?></p>
                     </div>
 
                     <button name="Login" class="btn btn-outline-primary btn-lg btn-block">Iniciar sesion</button>
