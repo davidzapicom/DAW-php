@@ -12,24 +12,29 @@
 </head>
 <body>
 <?php
+$error = "";
 if(isset($_POST['Register'])) {
     $name = $_POST['name'];
     $password = $_POST['password'];
     $password2 = $_POST['password2'];
+    $rol = $_POST['rol'];
+    if ($password != $password2) {
+        $error = "Las contraseñas no coinciden";
+    }
     $pass = hash_hmac('sha256', 'The quick brown fox jumped over the lazy dog.', 'secret');
 
     if(empty($name) || empty($password) || empty($password2)) {
         header("location:register.php");
     } else {
-        $sentencia="SELECT * FROM usuarios where name='$name' AND password='$password'";
+        $sentencia="SELECT * FROM usuarios where name='$name' AND password='$pass'";
         $con = mysqli_connect('localhost','administrador','administrador','ventas');
         $result = mysqli_query($con,$sentencia);
         $fetch = mysqli_fetch_assoc($result);
         
         if (mysqli_num_rows($result) >= 1) {
-            echo "Ya existe un articulo con esos atributos.";
+            echo "Ya existe un usuario registrado.";
         } else {
-            $sql="INSERT INTO () VALUES ($ ,'$ ',$ ,'$ ')";
+            $sql="INSERT INTO usuarios (idusuario,usuario,password,rol) VALUES ($ ,'$name','$password','$rol')";
             if(mysqli_query($con, $sql)){
                 echo "Usuario registrado correctamente.";
             } else{
@@ -57,10 +62,11 @@ if(isset($_POST['Register'])) {
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" placeholder="Repite la contraseña" name="password2" required/>
+                        <p><?php echo $error; ?></p>
                     </div>
                     <div class="form-group">
-                        <label for="cars">Elige tu rol:</label>
-                        <select>
+                        <label for="rol">Elige tu rol:</label>
+                        <select name="rol" id="rol" required>
                             <option value="consultor">Consultor</option>
                             <option value="administrador">Administrador</option>  
                         </select>
