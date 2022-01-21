@@ -18,9 +18,6 @@ if(isset($_POST['Register'])) {
     $password = $_POST['password'];
     $password2 = $_POST['password2'];
     $rol = $_POST['rol'];
-    if ($password != $password2) {
-        $error = "Las contraseñas no coinciden";
-    }
     $pass = hash_hmac('sha256', 'The quick brown fox jumped over the lazy dog.', 'secret');
 
     if(empty($name) || empty($password) || empty($password2)) {
@@ -32,13 +29,16 @@ if(isset($_POST['Register'])) {
         $fetch = mysqli_fetch_assoc($result);
         
         if (mysqli_num_rows($result) >= 1) {
-            echo "Ya existe un usuario registrado.";
+            $error = "Ya existe un usuario registrado.";
         } else {
+            if ($password != $password2) {
+                $error = "Las contraseñas no coinciden";
+            }
             $sql="INSERT INTO usuarios (idusuario,usuario,password,rol) VALUES ($ ,'$name','$password','$rol')";
             if(mysqli_query($con, $sql)){
-                echo "Usuario registrado correctamente.";
+                $error = "Usuario registrado correctamente.";
             } else{
-                echo "ERROR: no se ha podido registrar el usuario.";
+                $error = "ERROR: no se ha podido registrar el usuario.";
             }
         }
     mysqli_close($con);
