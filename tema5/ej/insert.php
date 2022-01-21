@@ -12,6 +12,11 @@
 </head>
 <body>
 <?php
+session_start();
+$error = "";
+echo '<h3>Hola ' .$_SESSION["name"]. ' ' .$_SESSION["rol"]. '.</h3>';
+echo '<a href="consult.php">Ir a consultar</a> <br/>';
+echo '<a href="logout.php">Cerrar sesión</a>';
 if(isset($_POST['Insert'])) {
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
@@ -25,13 +30,13 @@ if(isset($_POST['Insert'])) {
         $fetch = mysqli_fetch_assoc($result);
         
         if (mysqli_num_rows($result) >= 1) {
-            echo "Ya existe un articulo con esos atributos.";
+            $error = "Ya existe un articulo con esos atributos.";
         } else {
             $sql = "INSERT INTO articulos (idarticulo, descripcion, precio, caracteristicas) VALUES (NULL,'$descripcion',$precio,'$caracteristicas')";
             if(mysqli_query($con, $sql)){
-                echo "Articulo insertado correctamente.";
+                $error = "Articulo insertado correctamente.";
             } else{
-                echo "ERROR: no se ha podido insertar el articulo.";
+                $error = "ERROR: no se ha podido insertar el articulo.";
             }
         }
     mysqli_close($con);
@@ -54,6 +59,7 @@ if(isset($_POST['Insert'])) {
                     <div class="form-group">
                         <label>Características</label>
                         <input type="text" class="form-control" placeholder="Caracteristicas" name="caracteristicas" required/>
+                        <p><?php echo $error; ?></p>
                     </div>
                     <button name="Insert" class="btn btn-outline-primary btn-lg btn-block">Insertar</button>
                 </form>

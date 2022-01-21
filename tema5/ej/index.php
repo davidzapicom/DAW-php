@@ -12,31 +12,25 @@
 </head>
 <body>
 <?php 
+session_start();
 $error = "";
     if(isset($_POST['Login'])) {
-        $name = $_POST['Name'];
-        $password = $_POST['Password'];
-        if(empty($_POST['Name']) || empty($_POST['Password'])) {
-            header("location:index.php");
+        $_SESSION['name'] = $_POST['name'];
+        $password = $_POST['password'];
+        $cif = hash_hmac('sha512', '$password', 'secret');
+        $con = mysqli_connect('localhost','administrador','administrador','ventas');
+        $sentencia = 'SELECT * FROM usuarios WHERE usuario="' .$_SESSION["name"]. '" AND password="' .$cif. '"';
+        $result = mysqli_query($con,$sentencia);
+        $fetch = mysqli_fetch_assoc($result);
+        $_SESSION['rol'] = $fetch['rol'];
+        mysqli_close($con);
+        if (mysqli_num_rows($result) == 0) {
+            $error = "Usuario inexistente o contraseña incorrecta";
         } else {
-            $pass = hash_hmac('sha512', '$password', 'secret');
-            $con = mysqli_connect('localhost','administrador','administrador','ventas');
-            $sentencia = "SELECT * FROM usuarios where usuario='$name' and password='$pass'";
-            $result = mysqli_query($con,$sentencia);
-            $fetch = mysqli_fetch_assoc($result);
-            $rol = $fetch['rol'];
-            //var_dump($result);
-            mysqli_close($con);
-            if (mysqli_num_rows($result) == 0) {
-                $error = "Este usario no existe";
-            } else {
-                echo '<h3>Hola ' . $name. ' ' .$rol. '.</h3>';
-                echo '<a href="logout.php">Cerrar sesión</a>';
-                if($rol == 'consultor') {
-                    header("location:consult.php");
-                } else if ($rol == 'administrador') {
-                    header("location:insert.php");
-                }
+            if($_SESSION['rol'] == 'consultor') {
+                header("location:consult.php");
+            } else if ($_SESSION['rol'] == 'administrador') {
+                header("location:insert.php");
             }
         }
     }     
@@ -46,16 +40,13 @@ $error = "";
             <div class="inner-block">
                 <form action="#" method="post">
                     <h3>Login</h3>
-
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nombre de usuario" name="Name" required/>
+                        <input type="text" class="form-control" placeholder="Nombre de usuario" name="name" required/>
                     </div>
-
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Contraseña" name="Password" required/>
+                        <input type="password" class="form-control" placeholder="Contraseña" name="password" required/>
                         <p><?php echo $error; ?></p>
                     </div>
-
                     <button name="Login" class="btn btn-outline-primary btn-lg btn-block">Iniciar sesion</button>
                 </form>
                 <p>Si aún no tienes una cuenta <a href="register.php">Registrarse</a></p>

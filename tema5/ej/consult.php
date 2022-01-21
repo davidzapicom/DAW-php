@@ -10,6 +10,9 @@
 </head>
 <body>
 <?php
+session_start();
+echo '<h3>Hola ' .$_SESSION["name"]. ' ' .$_SESSION["rol"]. '.</h3>';
+echo '<a href="logout.php">Cerrar sesión</a>';
 $link = new PDO('mysql:host=localhost;dbname=ventas', 'consultor', 'consultor');
 ?>
 <table class="table table-striped">

@@ -12,6 +12,7 @@
 </head>
 <body>
 <?php
+session_start();
 $error = "";
 if(isset($_POST['Register'])) {
     $name = $_POST['name'];
@@ -42,7 +43,7 @@ if(isset($_POST['Register'])) {
                         header("location:insert.php");
                     }
                 } else{
-                    echo "ERROR: no se ha podido insertar el usuario.";
+                    $error = "ERROR: no se ha podido insertar el usuario.";
                 }
             }
         }
