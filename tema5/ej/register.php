@@ -79,7 +79,7 @@ if(isset($_POST['Register'])) {
                     </div>            
                     <button name="Register" class="btn btn-outline-primary btn-lg btn-block">Registrarse</button>
                 </form>
-                <p>Si ya tienes una cuenta <a href="index.php">Iniciar sesión</a></p>
+                <p>Si ya tienes una cuenta <a href="index.php">iniciar sesión</a></p>
             </div>
         </div>
     </div>

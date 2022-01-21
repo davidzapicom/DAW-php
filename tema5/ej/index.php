@@ -49,7 +49,7 @@ $error = "";
                     </div>
                     <button name="Login" class="btn btn-outline-primary btn-lg btn-block">Iniciar sesion</button>
                 </form>
-                <p>Si aún no tienes una cuenta <a href="register.php">Registrarse</a></p>
+                <p>Si aún no tienes una cuenta <a href="register.php">registrarse</a></p>
             </div>
         </div>
     </div>
