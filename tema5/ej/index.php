@@ -20,8 +20,8 @@ $error = "";
             header("location:index.php");
         } else {
             $pass = hash_hmac('sha512', '$password', 'secret');
-            $sentencia = "SELECT * FROM usuarios where usuario='$name' and password='$pass'";
             $con = mysqli_connect('localhost','root','','ventas');
+            $sentencia = "SELECT * FROM usuarios where usuario='$name' and password='$password'";
             $result = mysqli_query($con,$sentencia);
             $fetch = mysqli_fetch_assoc($result);
             $rol = $fetch['rol'];

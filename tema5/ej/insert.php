@@ -13,14 +13,13 @@
 <body>
 <?php
 if(isset($_POST['Insert'])) {
-    $id_articulo = $_POST['id_articulo'];
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
     $caracteristicas = $_POST['caracteristicas'];
-    if(empty($id_articulo) || empty($descripcion) || empty($precio)) {
+    if(empty($descripcion) || empty($precio) || empty($caracteristicas)) {
         header("location:index.php");
     } else {
-        $sentencia="SELECT * FROM articulos where id_articulo='$id_articulo'";
+        $sentencia = "SELECT * FROM articulos where descripcion='$descripcion'";
         $con = mysqli_connect('localhost','administrador','administrador','ventas');
         $result = mysqli_query($con,$sentencia);
         $fetch = mysqli_fetch_assoc($result);
@@ -28,7 +27,7 @@ if(isset($_POST['Insert'])) {
         if (mysqli_num_rows($result) >= 1) {
             echo "Ya existe un articulo con esos atributos.";
         } else {
-            $sql="INSERT INTO articulos (id_articulo, descripcion, precio, caracteristicas) VALUES ($id_articulo,'$descripcion',$precio,'$caracteristicas')";
+            $sql = "INSERT INTO articulos (idarticulo, descripcion, precio, caracteristicas) VALUES (NULL,'$descripcion',$precio,'$caracteristicas')";
             if(mysqli_query($con, $sql)){
                 echo "Articulo insertado correctamente.";
             } else{
@@ -44,11 +43,6 @@ if(isset($_POST['Insert'])) {
             <div class="inner-block">
                 <form action="#" method="post">
                     <h3>Insertar articulo</h3>
-
-                    <div class="form-group">
-                        <label>Id articulo</label>
-                        <input type="number" class="form-control" placeholder="Id articulo" name="id_articulo" required/>
-                    </div>
                     <div class="form-group">
                         <label>Descripcion</label>
                         <input type="text" class="form-control" placeholder="Descripcion" name="descripcion" required/>
