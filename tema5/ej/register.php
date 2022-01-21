@@ -23,7 +23,7 @@ if(isset($_POST['Register'])) {
     if(empty($name) || empty($password) || empty($password2)) {
         header("location:register.php");
     } else {
-        $sentencia="SELECT * FROM usuarios where name='$name' AND password='$pass'";
+        $sentencia="SELECT * FROM usuarios where name='$name'";
         $con = mysqli_connect('localhost','administrador','administrador','ventas');
         $result = mysqli_query($con,$sentencia);
         $fetch = mysqli_fetch_assoc($result);
