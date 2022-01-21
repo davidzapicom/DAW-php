@@ -20,8 +20,8 @@ $error = "";
             header("location:index.php");
         } else {
             $pass = hash_hmac('sha512', '$password', 'secret');
-            $con = mysqli_connect('localhost','root','','ventas');
-            $sentencia = "SELECT * FROM usuarios where usuario='$name' and password='$password'";
+            $con = mysqli_connect('localhost','administrador','administrador','ventas');
+            $sentencia = "SELECT * FROM usuarios where usuario='$name' and password='$pass'";
             $result = mysqli_query($con,$sentencia);
             $fetch = mysqli_fetch_assoc($result);
             $rol = $fetch['rol'];
@@ -33,10 +33,9 @@ $error = "";
                 echo '<h3>Hola ' . $name. ' ' .$rol. '.</h3>';
                 echo '<a href="logout.php">Cerrar sesión</a>';
                 if($rol == 'consultor') {
-                    require("consult.php");
+                    header("location:consult.php");
                 } else if ($rol == 'administrador') {
-                    require("insert.php");
-                    require("consult.php");
+                    header("location:insert.php");
                 }
             }
         }

@@ -15,7 +15,6 @@ $link = new PDO('mysql:host=localhost;dbname=ventas', 'consultor', 'consultor');
 <table class="table table-striped">
 		<thead>
 		<tr>
-			<th>ID</th>
 			<th>DESCRIPCION</th>
 			<th>PRECIO</th>
 			<th>CARACTERISTICAS</th>
@@ -23,7 +22,6 @@ $link = new PDO('mysql:host=localhost;dbname=ventas', 'consultor', 'consultor');
 		</thead>
 <?php foreach ($link->query('SELECT * from articulos') as $row){ ?> 
 <tr>
-	<td><?php echo $row['id_articulo'] ?></td>
     <td><?php echo $row['descripcion'] ?></td>
     <td><?php echo $row['precio'] ?></td>
     <td><?php echo $row['caracteristicas'] ?></td>
