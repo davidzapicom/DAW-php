@@ -1,13 +1,14 @@
 <?php 
 session_start();
 $name = $_SESSION['Name'] = $_POST['Name'];
-$pass = $_SESSION['Password'] = $_POST['Password'];
+$password = $_SESSION['Password'] = $_POST['Password'];
 
     //INICIAR USUARIO
     if(isset($_POST['Login'])) {
         if(empty($_POST['Name']) || empty($_POST['Password'])) {
             header("location:index.php");
         } else {
+            $pass = hash_hmac('sha512', '$password', 'secret');
             $sentencia="SELECT * FROM usuarios where usuario='$name' and password='$pass'";
             $con=mysqli_connect('localhost','root','','ventas');
             $result=mysqli_query($con,$sentencia);

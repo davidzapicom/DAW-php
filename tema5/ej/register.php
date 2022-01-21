@@ -18,12 +18,11 @@ if(isset($_POST['Register'])) {
     $password = $_POST['password'];
     $password2 = $_POST['password2'];
     $rol = $_POST['rol'];
-    $pass = hash_hmac('sha256', 'The quick brown fox jumped over the lazy dog.', 'secret');
 
     if(empty($name) || empty($password) || empty($password2)) {
         header("location:register.php");
     } else {
-        $sentencia="SELECT * FROM usuarios where name='$name'";
+        $sentencia = "SELECT * FROM usuarios where usuario='$name'";
         $con = mysqli_connect('localhost','administrador','administrador','ventas');
         $result = mysqli_query($con,$sentencia);
         $fetch = mysqli_fetch_assoc($result);
@@ -34,9 +33,15 @@ if(isset($_POST['Register'])) {
             if ($password != $password2) {
                 $error = "Las contraseñas no coinciden";
             }
-            $sql="INSERT INTO usuarios (idusuario,usuario,password,rol) VALUES ($ ,'$name','$password','$rol')";
+            $pass = hash_hmac('sha512', '$password', 'secret');
+            $sql = "INSERT INTO usuarios (idusuario,usuario,password,rol) VALUES (NULL,'$name','$pass','$rol')";
             if(mysqli_query($con, $sql)){
                 $error = "Usuario registrado correctamente.";
+                if ($rol == 'consultor')  {
+                    header("location:consult.php");
+                } else if ($rol == 'administrador') {
+                    header("location:insert.php");
+                }
             } else{
                 $error = "ERROR: no se ha podido registrar el usuario.";
             }

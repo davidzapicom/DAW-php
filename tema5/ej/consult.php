@@ -10,7 +10,7 @@
 </head>
 <body>
 <?php
-$link = new PDO('mysql:host=localhost;dbname=ventas', 'consultor', '');
+$link = new PDO('mysql:host=localhost;dbname=ventas', 'consultor', 'consultor');
 ?>
 <table class="table table-striped">
 		<thead>
