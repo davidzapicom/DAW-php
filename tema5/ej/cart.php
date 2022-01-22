@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-	<?php
+    <?php
 	session_start();
 	$sessionErr = "";
 	if ($_SESSION["rol"] === "consultor") {
 		$_SESSION["connection"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
-		$consulta = 'SELECT * FROM `articulos`';
+		$consulta = 'SELECT * FROM articulos';
 		$consultaArticulo = mysqli_query($_SESSION["connection"], $consulta);
 		if (!isset($_SESSION["cesta"])) {
 			$_SESSION["cesta"] = array();
@@ -48,7 +46,7 @@
 			$_SESSION["connection"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
 			$horaActual = date('Y-m-d H:i:s');
 			foreach ($_SESSION["cesta"] as $indice => $producto) {
-				$introducir = "INSERT INTO `compras` (id_usuario, id_articulo, fecha, cantidad, precio_unitario) VALUES ('{$_SESSION["id_usuario"]}', '{$producto[0]}', '{$horaActual}', '{$producto[3]}', '{$producto[2]}')";
+				$introducir = "INSERT INTO `compras` (idusuario, idarticulo, fecha, cantidad, precio_unitario) VALUES ('{$_SESSION["idusuario"]}', '{$producto[0]}', '{$horaActual}', '{$producto[3]}', '{$producto[2]}')";
 				$introducirCompra = mysqli_query($_SESSION["connection"], $introducir);
 			}
 			// Vaciar el carrito despues de comprar
@@ -76,7 +74,7 @@
 	while ($fila = mysqli_fetch_array($consultaArticulo)) {
 		echo '
 							<tr>
-								<td>' . $fila["id_articulo"] . '</td>
+								<td>' . $fila["idarticulo"] . '</td>
 								<td>' . $fila["descripcion"] . '</td>
 								<td>' . $fila["precio"] . '</td>
 								<td>' . $fila["caracteristicas"] . '</td>
@@ -85,7 +83,7 @@
 										<input type="hidden" name="descripcion" value="' . $fila["descripcion"] . '"/>
 										<input type="hidden" name="precio" value="' . $fila["precio"] . '"/>
 										<input type="hidden" name="caracteristicas" value="' . $fila["caracteristicas"] . '"/>
-										<button type="submit" name="añadir" value="' . $fila["id_articulo"] . '">Añadir</button>
+										<button type="submit" name="añadir" value="' . $fila["idarticulo"] . '">Añadir</button>
 									</form>
 								</td>
 							</tr>
@@ -126,21 +124,15 @@
 				<div class="total">
 	';
 	if ($vacio) {
-		echo '
-					<p>Carrito vacio</p>
-		';
+		echo '<p>Carrito vacio</p>';
 	} else {
-		echo '
-					<p>Total: ' . $total . '€</p>
-					<form action="#" method="post">
-						<button type="submit" name="comprar">Comprar</button>
-					</form>
-		';
+		echo '<p>Total: ' . $total . '€</p>
+			    <form action="#" method="post">
+					<button type="submit" name="comprar">Comprar</button>
+				</form>';
 	}
-	echo '
-				</div>
+        echo '                </div>
 			</div>
-		</div>
-	';
+		</div>';
 	?>
 </body>
