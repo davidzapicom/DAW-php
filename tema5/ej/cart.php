@@ -9,6 +9,9 @@
     <?php
 	session_start();
 	$sessionErr = "";
+    echo '<h3>Hola ' .$_SESSION["name"]. ' ' .$_SESSION["rol"]. '.</h3>';
+    echo '<a href="consult.php">Ir a consultar</a> <br/>';
+    echo '<a href="logout.php">   sesión</a>';
 	if ($_SESSION["rol"] === "consultor") {
 		$_SESSION["connection"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
 		$consulta = 'SELECT * FROM articulos';
@@ -43,12 +46,13 @@
 		}
 	} else if (isset($_POST["comprar"])) {
 		if ($_SESSION["rol"] === "consultor") {
-			$_SESSION["connection"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
+			$_SESSION["connection"] = mysqli_connect("localhost", "administrador", "administrador", "ventas");
 			$horaActual = date('Y-m-d H:i:s');
 			foreach ($_SESSION["cesta"] as $indice => $producto) {
-				$introducir = "INSERT INTO `compras` (idusuario, idarticulo, fecha, cantidad, precio_unitario) VALUES ('{$_SESSION["idusuario"]}', '{$producto[0]}', '{$horaActual}', '{$producto[3]}', '{$producto[2]}')";
+				$introducir = "INSERT INTO compras (idusuario, idarticulo, fecha, cantidad, precio_unitario) VALUES ('{$_SESSION["idusuario"]}', '{$producto[0]}', '{$horaActual}', '{$producto[3]}', '{$producto[2]}')";
 				$introducirCompra = mysqli_query($_SESSION["connection"], $introducir);
 			}
+            var_dump($introducir);
 			// Vaciar el carrito despues de comprar
 			$_SESSION["cesta"] = array();
 		}
@@ -58,8 +62,6 @@
 			<div class="consulta">
 				<form action="#" method="post">
 					<div class="flex space-between">
-						<p>Conectado el usuario ' . $_SESSION["usuario"] . ' con el rol ' . $_SESSION["rol"] . '</p>
-						<button type="submit" class="cerrar" name="cerrarsesion">Cerrar sesion</button>
 					</div>
 					<p class="error">' . $sessionErr . '</p>
 					<table>
@@ -136,3 +138,4 @@
 		</div>';
 	?>
 </body>
+</html>

@@ -23,6 +23,7 @@ $error = "";
         $result = mysqli_query($con,$sentencia);
         $fetch = mysqli_fetch_assoc($result);
         $_SESSION['rol'] = $fetch['rol'];
+        $_SESSION["idusuario"] = $fetch["idusuario"];
         mysqli_close($con);
         if (mysqli_num_rows($result) == 0) {
             $error = "Usuario inexistente o contraseña incorrecta";
