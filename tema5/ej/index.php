@@ -29,7 +29,7 @@ $error = "";
             $error = "Usuario inexistente o contraseña incorrecta";
         } else {
             if($_SESSION['rol'] == 'consultor') {
-                header("location:consult.php");
+                header("location:cart.php");
             } else if ($_SESSION['rol'] == 'administrador') {
                 header("location:insert.php");
             }

@@ -10,8 +10,8 @@
 	session_start();
 	$sessionErr = "";
     echo '<h3>Hola ' .$_SESSION["name"]. ' ' .$_SESSION["rol"]. '.</h3>';
-    echo '<a href="consult-orders.php">Compras</a> <br/>';
-    echo '<a href="logout.php">Cerrar sesión</a>';
+    echo '<a class="boton" href="consult.php">Compras</a><br/>';
+    echo '<a class="boton" href="logout.php">Cerrar sesión</a><br/>';
 	if ($_SESSION["rol"] === "consultor") {
 		$_SESSION["con"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
 		$consulta = 'SELECT * FROM articulos';
@@ -23,10 +23,7 @@
 		$sessionErr = "No eres consultor";
 	}
 
-	if (isset($_POST['cerrarsesion'])) {
-		session_destroy();
-		header("Location:index.php");
-	} else if (isset($_POST["añadir"])) {
+	if (isset($_POST["añadir"])) {
 		// Buscar si el producto ya esta en el carrito
 		$posCarrito = array_search($_POST["añadir"], array_column($_SESSION["cesta"], 0));
 		if ($posCarrito !== false) {
@@ -46,24 +43,24 @@
 		}
 	} else if (isset($_POST["comprar"])) {
 		if ($_SESSION["rol"] === "consultor") {
-			$_SESSION["con"] = mysqli_connect("localhost", "administrador", "administrador", "ventas");
+			$_SESSION["con"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
 			$horaActual = date('Y-m-d H:i:s');
 			foreach ($_SESSION["cesta"] as $indice => $producto) {
-				$introducir = "INSERT INTO compras (idusuario, idarticulo, fecha, cantidad, precio_unitario) VALUES ('{$_SESSION["idusuario"]}', '{$producto[0]}', '{$horaActual}', '{$producto[3]}', '{$producto[2]}')";
-				$introducirCompra = mysqli_query($_SESSION["con"], $introducir);
+				$sentencia = "INSERT INTO compras (idusuario, idarticulo, fecha, cantidad, precio_unitario) VALUES ('{$_SESSION["idusuario"]}', '{$producto[0]}', '{$horaActual}', '{$producto[3]}', '{$producto[2]}')";
+				$introducirCompra = mysqli_query($_SESSION["con"], $sentencia);
 			}
-			echo '<p>' .$_SESSION["name"]. ', se ha realizado correctamente la compra.</p>';
+			echo '<p>¡' .$_SESSION["name"]. ', se ha realizado correctamente la compra!</p>';
 			// Vaciar el carrito despues de comprar
 			$_SESSION["cesta"] = array();
 		}
 	}
-	echo '
-		<div class="container comprar">
+	?>
+		<div class="container">
 			<div class="consulta">
 				<form action="#" method="post">
 					<div class="flex space-between">
 					</div>
-					<p class="error">' . $sessionErr . '</p>
+					<p class="error"><?php' . $sessionErr . '?></p>
 					<table>
 						<thead>
 							<th>ID</th>
@@ -72,26 +69,25 @@
 							<th>Caracteristicas</th>
 						</thead>
 						<tbody>
-	';
+	<?php
 	while ($fila = mysqli_fetch_array($consultaArticulo)) {
 		echo '
 							<tr>
-								<td>' . $fila["idarticulo"] . '</td>
-								<td>' . $fila["descripcion"] . '</td>
-								<td>' . $fila["precio"] . '</td>
-								<td>' . $fila["caracteristicas"] . '</td>
+								<td>' .$fila["idarticulo"]. '</td>
+								<td>' .$fila["descripcion"]. '</td>
+								<td>' .$fila["precio"]. '</td>
+								<td>' .$fila["caracteristicas"]. '</td>
 								<td>
 									<form action="#" method="post">
 										<input type="hidden" name="descripcion" value="' . $fila["descripcion"] . '"/>
 										<input type="hidden" name="precio" value="' . $fila["precio"] . '"/>
 										<input type="hidden" name="caracteristicas" value="' . $fila["caracteristicas"] . '"/>
-										<button type="submit" name="añadir" value="' . $fila["idarticulo"] . '">Añadir</button>
+										<button type="submit" class="boton" name="añadir" value="' . $fila["idarticulo"] . '">+</button>
 									</form>
 								</td>
-							</tr>
-		';
+							</tr>';
 	}
-	echo '
+	?>
 						</tbody>
 					</table>
 				</form>
@@ -99,25 +95,20 @@
 
 			<aside>
 			<div class="carrito">
-				<div class="productosCarrito">
-	';
+	<?php
 	$total = 0;
 	$vacio = true;
 	foreach ($_SESSION["cesta"] as $indice => $producto) {
 		if ($producto[3] > 0) {
 			$vacio = false;
 			echo '
-					<div class="prodCarrito">
-						<p class="carritoName">' . $producto[1] . '</p>
-						<div class="carritoDesc">
-							<p>' . $producto[3] . ' unidades</p>
-							<p>' . ($producto[2] * $producto[3]) . '€</p>
-						</div>
-						<div class="carritoDesc">
+					<div class="carrito">
 							<form action="#" method="post">
-								<button type="submit" class="secondary" name="quitar" value="' . $producto[0] . '">Quitar</button>
+								<p>' . $producto[1] . '</p>
+								<p>' . $producto[3] . ' unidades</p>
+								<p>' . ($producto[2] * $producto[3]) . '€</p>
+								<button type="submit" class="boton" name="quitar" value="' . $producto[0] . '">-</button>
 							</form>
-						</div>
 					</div>
 			';
 			$total += ($producto[2] * $producto[3]);
@@ -130,15 +121,15 @@
 	if ($vacio) {
 		echo '<p>El carrito está vacio.</p>';
 	} else {
-		echo '<p>Total: ' . $total . '€</p>
-			    <form action="#" method="post">
-					<button type="submit" name="comprar">Comprar</button>
+		echo '<br/><form action="#" method="post">
+				Total: ' . $total . '€
+					<button type="submit" class="boton" name="comprar">Comprar</button>
 				</form>';
 	}
-        echo '                </div>
-			</div>
-		</div>
-		</aside>';
 	?>
+              </div>
+		</div>
+		</aside>
+	
 </body>
 </html>

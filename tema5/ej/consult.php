@@ -1,38 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <title>Consultar</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<?php
-session_start();
-echo '<h3>Hola ' .$_SESSION["name"]. ' ' .$_SESSION["rol"]. '.</h3>';
-echo '<a href="cart.php">Productos</a><br/>';
-echo '<a href="logout.php">Cerrar sesión</a>';
-$link = new PDO('mysql:host=localhost;dbname=ventas', 'consultor', 'consultor');
-?>
-<table class="table table-striped">
-		<thead>
-		<tr>
-			<th>DESCRIPCION</th>
-			<th>PRECIO</th>
-			<th>CARACTERISTICAS</th>
-		</tr>
-		</thead>
-<?php foreach ($link->query('SELECT * from articulos') as $row){ ?> 
-<tr>
-    <td><?php echo $row['descripcion'] ?></td>
-    <td><?php echo $row['precio'] ?></td>
-    <td><?php echo $row['caracteristicas'] ?></td>
- </tr>
-<?php
+	<?php
+	session_start();
+	$sessionErr = $consultaErr = "";
+    echo '<h3>Hola ' .$_SESSION["name"]. ' ' .$_SESSION["rol"]. '.</h3>';
+    echo '<a class="boton" href="logout.php">Cerrar sesión</a>';
+	if ($_SESSION["rol"] === "consultor") {
+		$_SESSION["con"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
+	} else {
+		$sessionErr = "No puedes consultar";
 	}
-?>
-</table>
+	$hoy = date("Y-m-d");
+	?>
+		<div class="container">
+				<form action="#" method="post">
+					<p class="error"><?php ' . $sessionErr . ' ?></p>
+					<div>
+						Desde: <input type="date" name="desde" max="<?php' . $hoy . '?>">
+						Hasta: <input type="date" name="hasta" max="<?php' . $hoy . '?>">
+						<button type="submit" class="boton" name="consultar">Consultar</button>
+					</div>
+	<?php
+	if (isset($_POST['consultar'])) {
+		if (($_POST["inicio"] === "") && ($_POST["fin"] === "")) {
+			$desde = "0000-00-00 00:00:00";
+			$hasta =  $hoy . " 23:59:59";
+		} else if (($_POST["inicio"] === "") || ($_POST["fin"] === "")) {
+			$consultaErr = 'Introduce ambas fechas o deja ambas vacias.';
+		} else if ($_POST["inicio"] > $_POST["fin"]) {
+			$consultaErr = 'El "fin" debe ser posterior al "inicio".';
+		} else {
+			$desde = $_POST["inicio"] . " 00:00:00";
+			$hasta = $_POST["fin"] . " 23:59:59";
+		}
+		if ($consultaErr === "") {
+			$selectCompras = 'SELECT * FROM compras WHERE (fecha BETWEEN "' . $inicio . '" AND "' . $fin . '") AND (idusuario = "' . $_SESSION["idusuario"] . '")';
+			$consultarCompras = mysqli_query($_SESSION["con"], $selectCompras);
+			if (mysqli_num_rows($consultarCompras) === 0) {
+				$consultaErr = $_SESSION["name"] . ", no has realizado ninguna compra entre esas fechas.";
+			}
+		}
+		if ($consultaErr !== "") {
+			echo '<p class="error">' . $consultaErr . '</p>';
+		} else {
+			?>
+					<table>
+						<thead>
+							<th>Fecha</th>
+							<th>Nombre</th>
+							<th>Precio</th>
+							<th>Cantidad</th>
+						</thead>
+						<tbody>
+			<?php
+			while ($fetch = mysqli_fetch_array($consultarCompras)) {
+				$selectArticulos = 'SELECT descripcion FROM articulos WHERE idarticulo = "' . $fetch["idarticulo"] . '"';
+				$consultaNombreArticulo = mysqli_query($_SESSION["con"], $selectArticulos);
+				$nombreArticulo = mysqli_fetch_assoc($consultaNombreArticulo)["descripcion"];
+				echo '
+							<tr>
+								<td> ' . $fetch["fecha"] . '</td>
+								<td> ' . $nombreArticulo . '</td>
+								<td> ' . $fetch["precio_unitario"] . '€</td>
+								<td> ' . $fetch["cantidad"] . '</td>
+							</tr>
+				';
+			}
+			?>
+						</tbody>
+					</table>
+		<?php
+		}
+	}
+	?>
+				</form>
+		</div>
 </body>
 </html>

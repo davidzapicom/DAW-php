@@ -13,6 +13,7 @@ html,
 .vertical-center {
   width: 100%;
   height: 100%;
+  background-color: #ffffff;
 }
 
 .navbar {
@@ -61,4 +62,27 @@ html,
 
 label {
   font-weight: 500;
+}
+
+.consulta {
+  width: 60%;
+  float: left;
+}
+
+aside {
+  width: 30%;
+  float: right;
+}
+
+
+.boton {
+  color: black;
+  border: none;
+  background-color: #ffffff;
+}
+
+.boton:hover {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #ffffff;
 }
