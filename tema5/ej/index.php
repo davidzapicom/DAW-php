@@ -18,7 +18,7 @@ $error = "";
         $_SESSION['name'] = $_POST['name'];
         $password = $_POST['password'];
         $cif = hash_hmac('sha512', '$password', 'secret');
-        $con = mysqli_connect('localhost','administrador','administrador','ventas');
+        $_SESSION["con"] = mysqli_connect('localhost','administrador','administrador','ventas');
         $sentencia = 'SELECT * FROM usuarios WHERE usuario="' .$_SESSION["name"]. '" AND password="' .$cif. '"';
         $result = mysqli_query($con,$sentencia);
         $fetch = mysqli_fetch_assoc($result);

@@ -10,12 +10,12 @@
 	session_start();
 	$sessionErr = "";
     echo '<h3>Hola ' .$_SESSION["name"]. ' ' .$_SESSION["rol"]. '.</h3>';
-    echo '<a href="consult-orders.php">Ir a consultar pedidos</a> <br/>';
+    echo '<a href="consult-orders.php">Compras</a> <br/>';
     echo '<a href="logout.php">Cerrar sesión</a>';
 	if ($_SESSION["rol"] === "consultor") {
-		$_SESSION["connection"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
+		$_SESSION["con"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
 		$consulta = 'SELECT * FROM articulos';
-		$consultaArticulo = mysqli_query($_SESSION["connection"], $consulta);
+		$consultaArticulo = mysqli_query($_SESSION["con"], $consulta);
 		if (!isset($_SESSION["cesta"])) {
 			$_SESSION["cesta"] = array();
 		}
@@ -28,30 +28,31 @@
 		header("Location:index.php");
 	} else if (isset($_POST["añadir"])) {
 		// Buscar si el producto ya esta en el carrito
-		$posicionEnElCarrito = array_search($_POST["añadir"], array_column($_SESSION["cesta"], 0));
-		if ($posicionEnElCarrito !== false) {
-			$_SESSION["cesta"][$posicionEnElCarrito][3]++;
+		$posCarrito = array_search($_POST["añadir"], array_column($_SESSION["cesta"], 0));
+		if ($posCarrito !== false) {
+			$_SESSION["cesta"][$posCarrito][3]++;
 		} else {
 			array_push($_SESSION["cesta"], [$_POST["añadir"], $_POST["descripcion"], $_POST["precio"], 1]);
 		}
 	} else if (isset($_POST["quitar"])) {
-		$posicionEnElCarrito = array_search($_POST["quitar"], array_column($_SESSION["cesta"], 0));
-		$_SESSION["cesta"][$posicionEnElCarrito][3]--;
-		if ($_SESSION["cesta"][$posicionEnElCarrito][3] === 0) {
-			if ($posicionEnElCarrito === 0) {
+		$posCarrito = array_search($_POST["quitar"], array_column($_SESSION["cesta"], 0));
+		$_SESSION["cesta"][$posCarrito][3]--;
+		if ($_SESSION["cesta"][$posCarrito][3] === 0) {
+			if ($posCarrito === 0) {
 				array_shift($_SESSION["cesta"]);
 			} else {
-				array_splice($_SESSION["cesta"], $posicionEnElCarrito, $posicionEnElCarrito);
+				array_splice($_SESSION["cesta"], $posCarrito, $posCarrito);
 			}
 		}
 	} else if (isset($_POST["comprar"])) {
 		if ($_SESSION["rol"] === "consultor") {
-			$_SESSION["connection"] = mysqli_connect("localhost", "administrador", "administrador", "ventas");
+			$_SESSION["con"] = mysqli_connect("localhost", "administrador", "administrador", "ventas");
 			$horaActual = date('Y-m-d H:i:s');
 			foreach ($_SESSION["cesta"] as $indice => $producto) {
 				$introducir = "INSERT INTO compras (idusuario, idarticulo, fecha, cantidad, precio_unitario) VALUES ('{$_SESSION["idusuario"]}', '{$producto[0]}', '{$horaActual}', '{$producto[3]}', '{$producto[2]}')";
-				$introducirCompra = mysqli_query($_SESSION["connection"], $introducir);
+				$introducirCompra = mysqli_query($_SESSION["con"], $introducir);
 			}
+			echo '<p>' .$_SESSION["name"]. ', se ha realizado correctamente la compra.</p>';
 			// Vaciar el carrito despues de comprar
 			$_SESSION["cesta"] = array();
 		}

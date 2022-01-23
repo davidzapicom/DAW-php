@@ -14,7 +14,7 @@
     echo '<h3>Hola ' .$_SESSION["name"]. ' ' .$_SESSION["rol"]. '.</h3>';
     echo '<a href="logout.php">Cerrar sesión</a>';
 	if ($_SESSION["rol"] === "consultor") {
-		$_SESSION["connection"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
+		$_SESSION["con"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
 	} else {
 		$sessionErr = "No puedes consultar";
 	}
@@ -48,19 +48,16 @@
 
 		if ($consultaComprasErr === "") {
 			$selectCompras = 'SELECT * FROM compras WHERE (fecha BETWEEN "' . $desde . '" AND "' . $hasta . '") AND (idusuario = "' . $_SESSION["idusuario"] . '")';
-			$consultarCompras = mysqli_query($_SESSION["connection"], $selectCompras);
+			$consultarCompras = mysqli_query($_SESSION["con"], $selectCompras);
 			if (mysqli_num_rows($consultarCompras) === 0) {
 				$consultaComprasErr = $_SESSION["usuario"] . ", no ha realizado ninguna compra entre esas fechas.";
 			}
 		}
 
 		if ($consultaComprasErr !== "") {
-			echo '
-					<p class="error">' . $consultaComprasErr . '</p>
-			';
+			echo '<p class="error">' . $consultaComprasErr . '</p>';
 		} else {
-
-			echo '
+			?>
 					<table>
 						<thead>
 							<th>Fecha</th>
@@ -69,30 +66,29 @@
 							<th>Cantidad</th>
 						</thead>
 						<tbody>
-			';
+			<?php
 			while ($fetch = mysqli_fetch_array($consultarCompras)) {
 				$selectArticulos = 'SELECT descripcion FROM articulos WHERE idarticulo = "' . $fetch["idarticulo"] . '"';
-				$consultaNombreArticulo = mysqli_query($_SESSION["connection"], $selectArticulos);
+				$consultaNombreArticulo = mysqli_query($_SESSION["con"], $selectArticulos);
 				$nombreArticulo = mysqli_fetch_assoc($consultaNombreArticulo)["descripcion"];
 				echo '
 							<tr>
 								<td> ' . $fetch["fecha"] . '</td>
 								<td> ' . $nombreArticulo . '</td>
-								<td> ' . $fetch["precio_unitario"] . ' €</td>
+								<td> ' . $fetch["precio_unitario"] . '€</td>
 								<td> ' . $fetch["cantidad"] . '</td>
 							</tr>
 				';
 			}
-			echo '
+			?>
 						</tbody>
 					</table>
-			';
+					<?php
 		}
 	}
-	echo '
+	?>
 				</form>
 			</div>
 		</div>
-	';
-	?>
 </body>
+</html>
