@@ -4,6 +4,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<?php
@@ -22,22 +25,22 @@
 				<form action="#" method="post">
 					<p class="error"><?php ' . $sessionErr . ' ?></p>
 					<div>
-						Desde: <input type="date" name="desde" max="<?php' . $hoy . '?>">
-						Hasta: <input type="date" name="hasta" max="<?php' . $hoy . '?>">
+						Inicio: <input type="date" name="inicio" max="<?php' . $hoy . '?>">
+						Fin: <input type="date" name="fin" max="<?php' . $hoy . '?>">
 						<button type="submit" class="boton" name="consultar">Consultar</button>
 					</div>
 	<?php
 	if (isset($_POST['consultar'])) {
 		if (($_POST["inicio"] === "") && ($_POST["fin"] === "")) {
-			$desde = "0000-00-00 00:00:00";
-			$hasta =  $hoy . " 23:59:59";
+			$inicio = "0000-00-00 00:00:00";
+			$fin =  $hoy . " 23:59:59";
 		} else if (($_POST["inicio"] === "") || ($_POST["fin"] === "")) {
 			$consultaErr = 'Introduce ambas fechas o deja ambas vacias.';
 		} else if ($_POST["inicio"] > $_POST["fin"]) {
 			$consultaErr = 'El "fin" debe ser posterior al "inicio".';
 		} else {
-			$desde = $_POST["inicio"] . " 00:00:00";
-			$hasta = $_POST["fin"] . " 23:59:59";
+			$inicio = $_POST["inicio"] . " 00:00:00";
+			$fin = $_POST["fin"] . " 23:59:59";
 		}
 		if ($consultaErr === "") {
 			$selectCompras = 'SELECT * FROM compras WHERE (fecha BETWEEN "' . $inicio . '" AND "' . $fin . '") AND (idusuario = "' . $_SESSION["idusuario"] . '")';
