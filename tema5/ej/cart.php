@@ -10,8 +10,8 @@
 	session_start();
 	$sessionErr = "";
     echo '<h3>Hola ' .$_SESSION["name"]. ' ' .$_SESSION["rol"]. '.</h3>';
-    echo '<a href="consult.php">Ir a consultar</a> <br/>';
-    echo '<a href="logout.php">   sesión</a>';
+    echo '<a href="consult-orders.php">Ir a consultar pedidos</a> <br/>';
+    echo '<a href="logout.php">Cerrar sesión</a>';
 	if ($_SESSION["rol"] === "consultor") {
 		$_SESSION["connection"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
 		$consulta = 'SELECT * FROM articulos';
@@ -52,7 +52,6 @@
 				$introducir = "INSERT INTO compras (idusuario, idarticulo, fecha, cantidad, precio_unitario) VALUES ('{$_SESSION["idusuario"]}', '{$producto[0]}', '{$horaActual}', '{$producto[3]}', '{$producto[2]}')";
 				$introducirCompra = mysqli_query($_SESSION["connection"], $introducir);
 			}
-            var_dump($introducir);
 			// Vaciar el carrito despues de comprar
 			$_SESSION["cesta"] = array();
 		}
@@ -126,7 +125,7 @@
 				<div class="total">
 	';
 	if ($vacio) {
-		echo '<p>Carrito vacio</p>';
+		echo '<p>El carrito está vacio.</p>';
 	} else {
 		echo '<p>Total: ' . $total . '€</p>
 			    <form action="#" method="post">

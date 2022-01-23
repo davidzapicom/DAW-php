@@ -11,6 +11,8 @@
 	<?php
 	session_start();
 	$sessionErr = $consultaComprasErr = "";
+    echo '<h3>Hola ' .$_SESSION["name"]. ' ' .$_SESSION["rol"]. '.</h3>';
+    echo '<a href="logout.php">Cerrar sesión</a>';
 	if ($_SESSION["rol"] === "consultor") {
 		$_SESSION["connection"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
 	} else {
@@ -21,10 +23,6 @@
 		<div class="container">
 			<div class="consulta">
 				<form action="#" method="post">
-					<div class="flex space-between">
-						<p>Conectado el usuario ' . $_SESSION["usuario"] . ' con el rol ' . $_SESSION["rol"] . '</p>
-						<button type="submit" class="cerrar" name="cerrarsesion">Cerrar sesion</button>
-					</div>
 					<p class="error">' . $sessionErr . '</p>
 					<div>
 						Desde: <input type="date" name="desde" max="' . $hoy . '">
