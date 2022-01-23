@@ -20,11 +20,11 @@ $error = "";
         $cif = hash_hmac('sha512', '$password', 'secret');
         $_SESSION["con"] = mysqli_connect('localhost','administrador','administrador','ventas');
         $sentencia = 'SELECT * FROM usuarios WHERE usuario="' .$_SESSION["name"]. '" AND password="' .$cif. '"';
-        $result = mysqli_query($con,$sentencia);
+        $result = mysqli_query($_SESSION["con"],$sentencia);
         $fetch = mysqli_fetch_assoc($result);
         $_SESSION['rol'] = $fetch['rol'];
         $_SESSION["idusuario"] = $fetch["idusuario"];
-        mysqli_close($con);
+        mysqli_close($_SESSION["con"]);
         if (mysqli_num_rows($result) == 0) {
             $error = "Usuario inexistente o contraseña incorrecta";
         } else {

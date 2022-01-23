@@ -96,6 +96,8 @@
 					</table>
 				</form>
 			</div>
+
+			<aside>
 			<div class="carrito">
 				<div class="productosCarrito">
 	';
@@ -135,7 +137,8 @@
 	}
         echo '                </div>
 			</div>
-		</div>';
+		</div>
+		</aside>';
 	?>
 </body>
 </html>
