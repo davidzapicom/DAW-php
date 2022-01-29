@@ -1,4 +1,6 @@
+<h1>Función die()</h1>
 <?php
-$sol = 9/0;
-echo $sol;
+echo "<p>Voy a intentar dividir por cero</p>";
+$resultado = 5/0;
+echo resultado;
 ?>

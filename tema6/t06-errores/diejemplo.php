@@ -1,4 +1,4 @@
-<h1>Ejemplo con la función die</h1>
+<h1>Función die()</h1>
 <?php
 	echo "<p>--- Soy un ejemplo muy tonto.</p>";
 
