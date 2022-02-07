@@ -14,14 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-   // return view('welcome');
    return '¡Hola Mundo!';
 });
 
-Route::get('a', function () {
-    return '¡Hola Mundo! A';
+Route::get('a/{numero}', function ($numero) {
+   return '¡Hola Mundo! A' .$numero;
 });
 
 Route::get('b', function () {
    return '¡Hola Mundo! B';
+});
+
+Route::get('f', function () {
+   return view('form1');
 });
