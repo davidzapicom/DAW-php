@@ -19,5 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('a', function () {
-    return '¡Hola Mundo!2';
- });
+    return '¡Hola Mundo! A';
+});
+
+Route::get('b', function () {
+   return '¡Hola Mundo! B';
+});
