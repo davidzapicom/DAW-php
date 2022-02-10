@@ -69,9 +69,9 @@ if (isset($_POST["iniciar"])){
 
 		$usuario_o = $_SESSION["usuario"]; $password_o = $_SESSION["password"];
 
-		$password_o_encryp = hash_hmac('sha512', $password_o, 'adminz');
+		//$password_o_encryp = hash_hmac('sha512', $password_o, 'adminz');
 
-		$select_usuario = "SELECT * FROM usuarios WHERE usuLogin  = '$usuario_o' AND usuPassword  = '$password_o_encryp' AND usutipo";
+		$select_usuario = "SELECT * FROM usuarios WHERE usuLogin  = '$usuario_o' AND usuPassword  = '$password_o' AND usutipo";
 
 		$resultado = mysqli_query($enlace, $select_usuario);
 
