@@ -17,7 +17,7 @@ Route::get('/', function () {
    return '¡Hola Mundo!';
 });
 
-Route::get('a/{numero}', function ($numero) {
+Route::get('a/{numero?}', function ($numero = 3) {
    return '¡Hola Mundo! A' .$numero;
 });
 
