@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CalculoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,7 @@ Route::get('b', function () {
 Route::get('f', function () {
    return view('form1');
 });
+
+Route::get('suma/{num1}/{num2}',[CalculoController::class, 'suma']);
+
+Route::get('resta/{num1}/{num2}',[CalculoController::class, 'resta']);
