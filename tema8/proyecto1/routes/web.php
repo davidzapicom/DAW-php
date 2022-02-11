@@ -33,3 +33,5 @@ Route::get('f', function () {
 Route::get('suma/{num1}/{num2}',[CalculoController::class, 'suma']);
 
 Route::get('resta/{num1}/{num2}',[CalculoController::class, 'resta']);
+
+Route::get('division/{num1}/{num2}',[CalculoController::class, 'division']);
