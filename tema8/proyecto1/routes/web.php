@@ -26,22 +26,15 @@ Route::get('b', function () {
    return '¡Hola Mundo! B';
 });
 
-Route::get('suma', function () {
-   return view('form1');
-});
-
-Route::post('suma', function () {
-   
 
 
-   return view('result-form1');
-});
+
+Route::post('/suma',[CalculoController::class, 'suma'])-> name("sunma");
+Route::get('/suma',[CalculoController::class, 'formulario']);
 
 
 
 
 Route::get('suma/{num1}/{num2}',[CalculoController::class, 'suma']);
-
 Route::get('resta/{num1}/{num2}',[CalculoController::class, 'resta']);
-
 Route::get('division/{num1}/{num2}',[CalculoController::class, 'division']);

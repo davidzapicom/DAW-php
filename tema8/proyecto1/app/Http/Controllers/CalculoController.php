@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 
 class CalculoController extends Controller
 {
-    public function suma($num1,$num2) {
-        $suma = $num1 + $num2;
-        return "El resultado de la suma de $num1 - $num2 es: $suma";
+    public function formulario() {
+        return view ('Calculos.formulario');
+    }
+
+    public function suma(Request $request) {
+        $a = $request -> num1;
+        $b = $request -> num2;
+        $resultado = $a + $b;
+        return view('calculos.suma', compact("a","b","resultado"));
     }
 
     public function resta($num1,$num2) {
