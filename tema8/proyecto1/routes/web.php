@@ -18,23 +18,17 @@ Route::get('/', function () {
    return '¡Hola Mundo!';
 });
 
-Route::get('a/{numero?}', function ($numero = 3) {
-   return '¡Hola Mundo! A' .$numero;
-});
+// Route::get('a/{numero?}', function ($numero = 3) {
+//    return '¡Hola Mundo! A' .$numero;
+// });
 
-Route::get('b', function () {
-   return '¡Hola Mundo! B';
-});
+// Route::get('b', function () {
+//    return '¡Hola Mundo! B';
+// });
 
+// Route::get('suma/{num1}/{num2}',[CalculoController::class, 'suma']);
+// Route::get('resta/{num1}/{num2}',[CalculoController::class, 'resta']);
+// Route::get('division/{num1}/{num2}',[CalculoController::class, 'division']);
 
-
-
-Route::post('/suma',[CalculoController::class, 'suma'])-> name("sunma");
-Route::get('/suma',[CalculoController::class, 'formulario']);
-
-
-
-
-Route::get('suma/{num1}/{num2}',[CalculoController::class, 'suma']);
-Route::get('resta/{num1}/{num2}',[CalculoController::class, 'resta']);
-Route::get('division/{num1}/{num2}',[CalculoController::class, 'division']);
+Route::post('/calculadora',[CalculoController::class, 'resultado'])-> name("resultado");
+Route::get('/calculadora',[CalculoController::class, 'calculadora']);
