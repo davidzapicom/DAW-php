@@ -30,6 +30,9 @@ Route::get('f', function () {
    return view('form1');
 });
 
+
+
+
 Route::get('suma/{num1}/{num2}',[CalculoController::class, 'suma']);
 
 Route::get('resta/{num1}/{num2}',[CalculoController::class, 'resta']);
