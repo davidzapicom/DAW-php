@@ -1,12 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 class CalculoController extends Controller {
 
-    public function formulario() {
+    public function calculadora() {
         return view('Calculos.calculadora');
     }
 
