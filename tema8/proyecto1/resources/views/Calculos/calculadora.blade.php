@@ -4,16 +4,17 @@
 @section('content')
     <h1>Formulario</h1>
     <form action="{{route('resultado')}}" method="post">
-        <label>Introduce dos números para sumar:</label>
+        <label>Introduce dos números para operar:</label>
         <br>
         <input type="number" name="n1">
-        <br>
+        <br><br>
         <input type="number" name="n2">
         @csrf
-        <input type="button" value="sumar" name="sumar">
-        <input type="button" value="restar" name="restar">
-        <input type="button" value="multiplicar" name="multiplicar">
-        <input type="button" value="dividir" name="dividir">
+        <br><br>
+        <button type="submit" name="sumar">Sumar</button>
+        <button type="submit" name="restar">Restar</button>
+        <button type="submit" name="multiplicar">Multiplicar</button>
+        <button type="submit" name="dividir">Dividir</button>
     </form>
 </body>
-@ednsection
+@endsection

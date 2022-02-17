@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use Hamcrest\Collection\IsEmptyTraversable;
 use Illuminate\Http\Request;
 
 class CalculoController extends Controller {
@@ -12,12 +13,15 @@ class CalculoController extends Controller {
     public function calculo(Request $request) {
         $a = $request -> n1;
         $b = $request -> n2;
-
-
-        $resultado = $a + $b;
-        
-        
-        
+        if (isset()) {
+            $resultado = $a + $b;
+        } else if () {
+            $resultado = $a - $b;
+        } else if () {
+            $resultado = $a * $b;
+        } else if () {
+            $resultado = $a / $b;
+        }       
         return view('Calculos.resultado', compact("a","b","resultado"));
     }
 
