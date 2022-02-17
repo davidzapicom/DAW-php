@@ -26,8 +26,15 @@ Route::get('b', function () {
    return '¡Hola Mundo! B';
 });
 
-Route::get('f', function () {
+Route::get('suma', function () {
    return view('form1');
+});
+
+Route::post('suma', function () {
+   
+
+
+   return view('result-form1');
 });
 
 
