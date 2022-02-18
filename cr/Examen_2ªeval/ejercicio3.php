@@ -28,21 +28,15 @@ session_start();
 //--------------------------------------------------------------------------------------------
 
 $host='localhost'; $nombre_bd='cifpaviles'; //Base de datos
-
 $usuario_bd = 'director'; $password_bd = 'director';
-
 $_SESSION["enlace"] = mysqli_connect ( $host, $usuario_bd, $password_bd, $nombre_bd );
-
 $enlace = $_SESSION["enlace"];
 
 //---------------------------------------------------------------------------------------------
 
 echo "Bienvenido " . $_SESSION["rol"] . " nombre de usuario " . $_SESSION["usuario"] . " <br><br>";
-
 echo "<h1>Nota media, maxima y minima por asignatura</h1>"
-
 ?>
-
 <table>
         <tr>
             <th>Asignatura</th>
@@ -57,85 +51,45 @@ echo "<h1>Nota media, maxima y minima por asignatura</h1>"
 <?php
 
 // Media lengua --------------------------------------------------------------------------------
-
 $sql_lengua_avg = "SELECT AVG(nota) FROM `notas` WHERE asignatura = 'Lengua' ";
-
 $resultado = mysqli_query($enlace, $sql_lengua_avg);
-
-		if (mysqli_num_rows($resultado) > 0) { //Select
-    
+		if (mysqli_num_rows($resultado) > 0) { //Select 
 			while($fila = mysqli_fetch_assoc($resultado)) {
-
                 $lengua_avg = $fila["AVG(nota)"];
-
             }
-
         }
-
 // MAX
-
 $sql_lengua_max = "SELECT MAX(nota) FROM `notas` WHERE asignatura = 'Lengua' ";
-
 $resultado = mysqli_query($enlace, $sql_lengua_max);
-
-		if (mysqli_num_rows($resultado) > 0) { //Select
-    
+		if (mysqli_num_rows($resultado) > 0) { //Select   
 			while($fila = mysqli_fetch_assoc($resultado)) {
-
                 $lengua_max = $fila["MAX(nota)"];
-
             }
-
         }
-
 // MIN
-
 $sql_lengua_min = "SELECT MIN(nota) FROM `notas` WHERE asignatura = 'Lengua' ";
-
 $resultado = mysqli_query($enlace, $sql_lengua_min);
-
-		if (mysqli_num_rows($resultado) > 0) { //Select
-    
+		if (mysqli_num_rows($resultado) > 0) { //Select   
 			while($fila = mysqli_fetch_assoc($resultado)) {
-
                 $lengua_min = $fila["MIN(nota)"];
-
             }
-
         }
-
 // -----------------------------------------------------------------------------------------------
-
 // Media matematicas -----------------------------------------------------------------------------
-
 $sql_matematicas_avg = "SELECT AVG(nota) FROM `notas` WHERE asignatura = 'Matematicas' ";
-
 $resultado = mysqli_query($enlace, $sql_matematicas_avg);
-
-		if (mysqli_num_rows($resultado) > 0) { //Select
-    
+		if (mysqli_num_rows($resultado) > 0) { //Select   
 			while($fila = mysqli_fetch_assoc($resultado)) {
-
                 $matematicas_avg = $fila["AVG(nota)"];
-
             }
-
         }
-
 // MAX
-
 $sql_matematicas_max = "SELECT MAX(nota) FROM `notas` WHERE asignatura = 'Matematicas' ";
-
 $resultado = mysqli_query($enlace, $sql_matematicas_max);
-
-		if (mysqli_num_rows($resultado) > 0) { //Select
-    
+		if (mysqli_num_rows($resultado) > 0) { //Select   
 			while($fila = mysqli_fetch_assoc($resultado)) {
-
                 $matematicas_max = $fila["MAX(nota)"];
-
             }
-
         }
 
 // MIN
