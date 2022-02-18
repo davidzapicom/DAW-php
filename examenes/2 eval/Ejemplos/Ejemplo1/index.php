@@ -11,9 +11,9 @@ if (isset($_POST["login"])){
     $usuario = $_SESSION["usuario"] = $_POST["usuario"];
     $password = $_SESSION["password"] = $_POST["password"];
     $enlace = mysqli_connect ('localhost', 'root', '', 'cifp');
-    $selectA = "SELECT usuario,password,rol FROM usuarios WHERE usuario  = '$usuario' AND password  = '$password'";
-    $resultado = mysqli_query($enlace, $select_usuario);
-		if (mysqli_num_rows($resultado) > 0) { //Select
+    $select = "SELECT * FROM usuarios WHERE login= '$usuario' AND password= '$password'";
+    $resultado = mysqli_query($enlace, $select);
+		if (mysqli_num_rows($resultado) > 0) { 
 			while($fila = mysqli_fetch_assoc($resultado)) {
                $_SESSION["rol"] = $fila["rol"];
                if ($_SESSION["rol"] == 'director'){ 
@@ -23,7 +23,7 @@ if (isset($_POST["login"])){
                }
                if ($_SESSION["rol"] == 'alumno'){
                 echo "El usuario con el rol alumno no tiene acceso a esta aplicacion";
-                echo '<br><a href="ejercicio1.php">Volver</a>';
+                echo '<br><a href="index.php">Volver</a>';
                }
             }
         }else{
