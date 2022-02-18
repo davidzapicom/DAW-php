@@ -16,13 +16,12 @@
         $resultadoA = mysqli_query($enlace, $selectA);
         $selectP = "SELECT * FROM profesor WHERE dniP= '$dni'";
         $resultadoP = mysqli_query($enlace, $selectP);
-        if (mysqli_num_rows($resultadoA) == 0 && mysqli_num_rows($resultadoP) == 0) {
-            echo "Ese usuario no existe o contraseña incorrecta";
-            echo '<br><a href="ejercicio1.php">Volver</a>';
-        } else if (mysqli_num_rows($resultadoA) != 0) {
+        if (mysqli_num_rows($resultadoA) != 0) {
             echo '<p>Alumno</p>';
         } else if (mysqli_num_rows($resultadoP) != 0) {
             echo '<p>Profesor</p>';
+        } else {
+            echo "Dni introducido inexistente.";
         }
     } else {
     ?>
