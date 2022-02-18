@@ -30,6 +30,40 @@
             }
         }
     ?>
+
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<body>
+<head>
+<title>Ejercicio 2</title>
+<meta charset='UTF-8' />
+</head>
+<?php
+session_start();
+if (isset($_POST["enviar"])){
+    $id = $_POST["id"];
+    $_SESSION["enlace"] = mysqli_connect ('localhost', 'root', ' ', ' ');
+    $enlace = $_SESSION["enlace"];
+    $sqla = "INSERT INTO alumnos (id, nombre, apellidos) VALUES ('$id', '$nomb', '$apell')";
+    $sqlu = "INSERT INTO usuarios (id, usuario, password, rol) VALUES ('$id', '$nomb', '$nomb', 'alumno')";
+    if (mysqli_query($enlace, $sqla)) { //Insert
+        echo "El alumno creado en la tabla alumno <br><br>";
+    }else{
+        echo "Algo a fallado <br><br>";
+    }
+    if (mysqli_query($enlace, $sqlu)) { //Insert
+        echo "El alumno creado en la tabla usuarios <br><br>";
+    }else{
+        echo "Algo a fallado <br><br>";
+    }
+    echo '<br><a href="ejercicio2.php">Volver</a><br><br>';
+}else{
+    echo "Bienvenido " . $_SESSION["rol"] . " nombre de usuario " . $_SESSION["usuario"] . " <br><br>";
+    ?>
     <div class="form">
         <form action="#" method="post">
             <input type="text" name="dni" placeholder="DNI" required>
@@ -38,5 +72,8 @@
             <input type="submit" name="login" value="ENTRAR">
         </form>
     </div>
+<?php
+}
+?>
 </body>
 </html>
