@@ -15,8 +15,12 @@
         $selectP = "SELECT * FROM profesor WHERE dniP= '$dni'";
         $resultadoP = mysqli_query($enlace, $selectP);
         if (mysqli_num_rows($resultadoA) != 0) {
+            $fetch = mysqli_fetch_assoc($resultadoA);
+            $_SESSION["usuario"] = $fetch["nombreA"];
             header('location:modulo-matricular.php');
         } else if (mysqli_num_rows($resultadoP) != 0) {
+            $fetch = mysqli_fetch_assoc($resultadoP);
+            $_SESSION["usuario"] = $fetch["nombreP"];
             header('location:modulo-cursos.php');
         } else {
             echo "Dni introducido inexistente.";
