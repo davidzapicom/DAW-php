@@ -44,6 +44,10 @@
             $introducir = "INSERT INTO matricula (dnialumno, codcurso, pruebaA, pruebaB, tipo, inscripcion) VALUES ('$dni', '$codcurso', '$pruebaA', '$pruebaB', '$tipo', '$inscripcion')";
             $introducirMatricula = mysqli_query($con, $introducir);
             echo 'Matricula del alumno ' .$dni. ' en el curso ' .$codcurso. ' introducida correctamente!';
+            $_SESSION['codcurso'] = " ";
+            $_SESSION['tipo'] = " ";
+            $_SESSION['pruebaA'] = " ";
+            $_SESSION['pruebaB'] = " ";
         } else {
             echo 'No se ha podido introducir la matricula del alumno ' .$dni. ' en el curso ' .$codcurso. ', código de curso incorrecto.';
             $_SESSION['codcurso'] = " ";
@@ -66,8 +70,8 @@
             <span class="error">*</span>
             <br><br>
             TIPO:
-            <input type="radio" name="tipo" value="Oficial <?php echo $_SESSION['tipo']; ?>" required>Oficial
-            <input type="radio" name="tipo" value="Libre <?php echo $_SESSION['tipo']; ?>" required>Libre 
+            <input type="radio" name="tipo" value="Oficial" <?php if (isset($tipo) && $tipo=="Oficial") echo "checked";?> required>Oficial
+            <input type="radio" name="tipo" value="Libre" <?php if (isset($tipo) && $tipo=="Libre") echo "checked";?> required>Libre
             <span class="error">*</span>
             <br><br>
             INSCRIPCION: <input type="date" name="inscripcion" value="<?php echo $inscripcion; ?>" max="<?php echo $inscripcion; ?>" required>
