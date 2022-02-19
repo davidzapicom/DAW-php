@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html>
 <body>
-
 <head>
-
 <title>Ejercicio 6</title>
-
 <meta charset='UTF-8' />
-
 </head>
-
 <?php
-
 class Opcion {
     private $titulo;
     private $enlace;
@@ -43,20 +37,18 @@ class Opcion {
     }
   
     private function graficarHorizontal(){
-      for($f=0;$f<count($this->opciones);$f++)
-      {
+      for($f=0;$f<count($this->opciones);$f++){
         $this->opciones[$f]->graficar();
       }
     }
   
     private function graficarVertical(){
-      for($f=0;$f<count($this->opciones);$f++)
-      {
+      for($f=0;$f<count($this->opciones);$f++) {
         $this->opciones[$f]->graficar();
         echo '<br>';
       }
     }
-  
+
     public function graficar(){
       if (strtolower($this->direccion)=="horizontal")
         $this->graficarHorizontal();
@@ -65,7 +57,6 @@ class Opcion {
           $this->graficarVertical();
     }
   }
-  
           $menu1=new Menu('vertical');
           $opcion1=new Opcion('Google','http://www.google.com','#C3D9FF');
           $menu1->insertar($opcion1);
@@ -74,10 +65,6 @@ class Opcion {
           $opcion3=new Opcion('MSN','http://www.msn.com','#C3D9FF');
           $menu1->insertar($opcion3);
           $menu1->graficar();
-  
-
 ?>
-
-
 </body>
 </html>

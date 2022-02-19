@@ -1,46 +1,32 @@
 <!DOCTYPE html>
 <html>
 <body>
-
 <head>
-
 <title>Ejercicio 4</title>
-
 <meta charset='UTF-8' />
-
 </head>
-
 <?php
-
 class Persona {
-  
     protected $nombre;
     protected $edad;
 
     public function cargarDatosPersonales($nom,$ed){
-      
       $this->nombre=$nom;
       $this->edad=$ed;
-
     }
 
     public function imprimirDatosPersonales(){
-
       echo 'Nombre:' . $this->nombre . '<br>';
       echo 'Edad:' . $this->edad . '<br>';
-
     }
-
   }
   
   class Empleado extends Persona{
     protected $sueldo;
-    public function cargarSueldo($su)
-    {
+    public function cargarSueldo($su){
       $this->sueldo=$su;
     }
-    public function imprimirSueldo()
-    {
+    public function imprimirSueldo(){
       echo 'Sueldo:'.$this->sueldo.'<br>';
     }
   }
@@ -55,10 +41,6 @@ class Persona {
       echo 'Datos personales y sueldo del empleado:<br>';
       $empleado1->imprimirDatosPersonales();
       $empleado1->imprimirSueldo();
-  
-
 ?>
-
-
 </body>
 </html>

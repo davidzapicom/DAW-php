@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
 <body>
-
 <head>
-
 <title>Ejercicio 7</title>
-
 <meta charset='UTF-8' />
-
 </head>
-
 <?php
 if(isset($_POST['boton'])){
 class Opcion {
@@ -39,19 +34,16 @@ class Menu {
   
   public function insertar($op){
     $this->opciones[]=$op;
-    
   }
 
   private function graficarHorizontal(){
-    for($f=0;$f<count($this->opciones);$f++)
-    {
+    for($f=0;$f<count($this->opciones);$f++){
       $this->opciones[$f]->graficar();
     }
   }
 
   private function graficarVertical(){
-    for($f=0;$f<count($this->opciones);$f++)
-    {
+    for($f=0;$f<count($this->opciones);$f++){
       $this->opciones[$f]->graficar();
       echo '<br>';
     }
@@ -73,12 +65,9 @@ class Menu {
 		$menu1->insertar($opcion2);
 		$opcion3=new Opcion('MSN','http://www.msn.com','#C3D9FF');
 		$menu1->insertar($opcion3);
-		$menu1->graficar();
-    
+		$menu1->graficar();  
   }else{
 ?>
-
-
   <form method="post" action="ejercicio7.php">
     TITULO DE LA WEB A MOSTRAR <input type="text" name="titulo1"> URL1 A MOSTRAR <input type="text" name="url1"> Color: <input type="color" name="color1" value="#42f445"></br>
     TITULO DE LA WEB A MOSTRAR <input type="text" name="titulo2"> URL1 A MOSTRAR <input type="text" name="url2"> Color: <input type="color" name="color2" value="#294c8e"></br>
@@ -91,8 +80,5 @@ class Menu {
   <?php
 }
 ?>
-
-
-
 </body>
 </html>
