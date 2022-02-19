@@ -27,14 +27,10 @@
             $sql = mysqli_query($enlace, 'SELECT ROUND(AVG(nota),2), MIN(nota), MAX(nota), COUNT(alumno) FROM notas WHERE asignatura="'.$asignatura.'"');
             $media = mysqli_query($enlace, 'SELECT asignatura, ROUND(AVG(nota),2) FROM notas GROUP BY asignatura');
             if(mysqli_num_rows($consulta) == 0){
-                // mysql_num_rows <- esta funcion me imprime el numero de registro que encontro 
-                // si el numero es igual a 0 es porque el registro no existe en la base de datos
-                 
                     echo "La asignatura ".$asignatura." no esta en la base de datos cifp";
                     echo "<br/>";
                 }
                 else{
-                //caso contario (else) esta la asignatura en la base datos
                     echo "Resultados asignatura ".$asignatura;
                     echo "<table>";
                         echo "<tr>";
@@ -101,5 +97,3 @@
     ?>
 </body>
 </html>
-
-
