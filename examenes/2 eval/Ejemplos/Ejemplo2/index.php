@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Ejercicio 1</title>
     <meta charset='UTF-8' />
 </head>
-
 <body>
     <?php
     session_start();
@@ -17,9 +15,9 @@
         $selectP = "SELECT * FROM profesor WHERE dniP= '$dni'";
         $resultadoP = mysqli_query($enlace, $selectP);
         if (mysqli_num_rows($resultadoA) != 0) {
-            echo '<p>Alumno</p>';
+            header('location:modulo-matricular.php');
         } else if (mysqli_num_rows($resultadoP) != 0) {
-            echo '<p>Profesor</p>';
+            header('location:modulo-cursos.php');
         } else {
             echo "Dni introducido inexistente.";
         }
@@ -35,5 +33,4 @@
     }
     ?>
 </body>
-
 </html>
