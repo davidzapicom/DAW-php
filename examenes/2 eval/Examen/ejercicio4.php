@@ -14,7 +14,7 @@
     $usu = $_SESSION["usuario"];
     echo '<p>Nombre: ' . $usu . '</p>';
 
-    $enlace = mysqli_connect("localhost", "ACCESO", "", "videoclub");
+    $enlace = mysqli_connect("localhost", "acceso", "acceso", "video");
     $consulta = mysqli_query($enlace, 'SELECT MIN(year), MAX(year), title FROM peliculas');
     echo "<table>";
     echo "<tr>";

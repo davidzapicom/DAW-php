@@ -15,7 +15,7 @@
     $usu = $_SESSION["usuario"];
     echo '<p>Nombre: ' . $usu . '</p>';
 
-    $enlace = mysqli_connect("localhost", "ACCESO", "", "videoclub");
+    $enlace = mysqli_connect("localhost", "acceso", "acceso", "video");
     $consulta = mysqli_query($enlace, "SELECT * FROM peliculas ORDER BY nota ");
     if (mysqli_num_rows($consulta) != 0) {
         echo "<table>";

@@ -42,7 +42,7 @@
         $alquilada = $_POST["alquilada"];
         $sipnosis = $_POST["sipnosis"];
         $puntuacion = $_POST["puntuacion"];
-        $con = mysqli_connect('localhost', 'ACCESO', '', 'videoclub');
+        $con = mysqli_connect('localhost', 'acceso', 'acceso', 'video');
         $insert = "INSERT INTO peliculas (id,title,year,director,poster,rented,synopsis,nota) VALUES (NULL,'$titulo','$anio','$director','$poster',$alquilada,'$sipnosis',$puntuacion)";
         if (mysqli_query($con, $insert)) {
             $error = "pelicula insertado correctamente.";
