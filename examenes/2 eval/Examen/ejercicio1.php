@@ -12,8 +12,8 @@ session_start();
 if (isset($_POST["login"])){
     $usuario = $_SESSION["usuario"] = $_POST["usuario"];
     $password = $_SESSION["password"] = $_POST["password"];
-    $con = mysqli_connect ('localhost', 'ACCESO', '', 'videoclub');
-    $select = "SELECT * FROM usuarios WHERE name='$usuario' AND password= '$password'";
+    $con = mysqli_connect ('localhost', 'acceso', 'acceso', 'video');
+    $select = "SELECT * FROM usuarios WHERE name='$usuario' AND password='$password'";
     $resultado = mysqli_query($con, $select);
 		if (mysqli_num_rows($resultado) != 0) { 
             echo "Bienvenido <strong> $usuario </strong>";
@@ -22,7 +22,7 @@ if (isset($_POST["login"])){
             echo "El usuario no existe o se ha introducido mal la contraseña";
             echo '<br><a href="ejercicio1.php">Volver a intentarlo</a>';
         }
-}else{
+} else {
 ?>
 <div>
 <form action="#" method="post">
