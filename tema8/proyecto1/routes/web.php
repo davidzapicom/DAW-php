@@ -30,5 +30,5 @@ Route::get('/', function () {
 // Route::get('resta/{num1}/{num2}',[CalculoController::class, 'resta']);
 // Route::get('division/{num1}/{num2}',[CalculoController::class, 'division']);
 
-Route::post('calculadora',[CalculoController::class, 'resultado'])-> name("resultado");
+Route::post('calculadora',[CalculoController::class, 'resultado']) -> name("resultado");
 Route::get('calculadora',[CalculoController::class, 'calculadora']);
