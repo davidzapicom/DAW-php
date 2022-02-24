@@ -81,7 +81,7 @@
                 }
                 ?> 
             <br><br>
-            <button type="submit">Votar</button>-->
+            <button type="submit">Votar</button> -->
         <span class="error">*</span>
         <br><br>
         <input type="submit" value="Enviar" name="guardar" />

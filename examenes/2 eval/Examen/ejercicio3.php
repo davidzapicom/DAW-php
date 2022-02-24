@@ -16,7 +16,7 @@
     echo '<p>Nombre: ' . $usu . '</p>';
 
     $enlace = mysqli_connect("localhost", "acceso", "acceso", "video");
-    $consulta = mysqli_query($enlace, "SELECT * FROM peliculas ORDER BY nota ");
+    $consulta = mysqli_query($enlace, "SELECT * FROM peliculas WHERE rented='0' ORDER BY nota DESC");
     if (mysqli_num_rows($consulta) != 0) {
         echo "<table>";
         while ($datos = mysqli_fetch_array($consulta)) {
