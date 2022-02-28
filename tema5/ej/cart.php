@@ -16,7 +16,7 @@
     echo '<a class="boton" href="consult.php">Compras</a><br/>';
     echo '<a class="boton" href="logout.php">Cerrar sesión</a><br/>';
 	if ($_SESSION["rol"] === "consultor") {
-		$_SESSION["con"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
+		$_SESSION["con"] = mysqli_connect("localhost", "consultor", "", "ventas");
 		$consulta = 'SELECT * FROM articulos';
 		$consultaArticulo = mysqli_query($_SESSION["con"], $consulta);
 		if (!isset($_SESSION["cesta"])) {
@@ -63,7 +63,7 @@
 				<form action="#" method="post">
 					<div class="flex space-between">
 					</div>
-					<p class="error"><?php' . $sessionErr . '?></p>
+					<p class="error"><?php $sessionErr ?></p>
 					<table>
 						<thead>
 							<th>ID</th>

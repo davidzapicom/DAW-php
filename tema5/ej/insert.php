@@ -25,7 +25,7 @@ if(isset($_POST['Insert'])) {
         header("location:index.php");
     } else {
         $sentencia = "SELECT * FROM articulos where descripcion='$descripcion'";
-        $con = mysqli_connect('localhost','administrador','administrador','ventas');
+        $con = mysqli_connect('localhost','administrador','','ventas');
         $result = mysqli_query($con,$sentencia);
         $fetch = mysqli_fetch_assoc($result);
         

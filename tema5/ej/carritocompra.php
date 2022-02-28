@@ -12,7 +12,7 @@
 	session_start();
 	$sessionErr = $compraSuccess = $compraErr = "";
 	if ($_SESSION["rol"] === "consultor") {
-		$_SESSION["connection"] = mysqli_connect("localhost", "consultor", "consultor", "ventas");
+		$_SESSION["connection"] = mysqli_connect("localhost", "consultor", "", "ventas");
 		$consulta = 'SELECT * FROM `articulos`';
 		$consultaArticulo = mysqli_query($_SESSION["connection"], $consulta);
 		if (!isset($_SESSION["cesta"])) {
