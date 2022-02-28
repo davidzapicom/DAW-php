@@ -1,0 +1,3 @@
+Rol grabador Contraseña grabador
+
+Rol consultor Contraseña consultor
