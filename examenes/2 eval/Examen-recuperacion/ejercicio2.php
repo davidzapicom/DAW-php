@@ -26,7 +26,7 @@
         $fecha = date('Y-m-d', strtotime($_POST['fecha']));
         $hora = date('H:i:s', strtotime($_POST['hora']));
         $pictograma = $_POST["pictograma"];
-        $persona = $_POST ["persona"];
+        $persona = $_POST["persona"];
 
 
         if (($fecha >  date('Y-m-d') || ($fecha == date('Y-m-d') && $hora > date('H:i:s'))) && $hora >= "08:00" && $hora <= "24:00") {

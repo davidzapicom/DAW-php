@@ -15,7 +15,6 @@
         $fecha = date('Y-m-d', strtotime($_POST['fecha']));
         $persona = $_POST["persona"];
         $result = mysqli_query(mysqli_connect('localhost', 'ACCESO', '', 'pictograma'), "SELECT personas.nombre,agenda.hora,imagenes.imagen FROM personas,agenda,imagenes WHERE agenda.idpersona='$persona' AND agenda.fecha='$fecha' AND agenda.idpersona=personas.idpersona AND agenda.idimagen=imagenes.idimagen");
-        var_dump($result);
         $filas = mysqli_num_rows($result);
 
         if ($filas != 0) {
@@ -38,8 +37,6 @@
             ?>
                 </tbody>
             </table>
-
-
     <form action="#" method="post">
         Persona: <select name="persona" value="<?php if (isset($_POST['mostrar'])) echo $persona; ?>" required>
             <?php
