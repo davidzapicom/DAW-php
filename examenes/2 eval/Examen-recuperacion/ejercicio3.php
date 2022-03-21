@@ -14,7 +14,7 @@
     if (isset($_POST['mostrar'])) {
         $fecha = date('Y-m-d', strtotime($_POST['fecha']));
         $persona = $_POST["persona"];
-        $result = mysqli_query(mysqli_connect('localhost', 'ACCESO', '', 'pictograma'), "SELECT personas.nombre,agenda.hora,imagenes.imagen FROM personas,agenda,imagenes WHERE agenda.idpersona='$persona' AND agenda.fecha='$fecha' AND agenda.idpersona=personas.idpersona AND agenda.idimagen=imagenes.idimagen");
+        $result = mysqli_query(mysqli_connect('localhost', 'ACCESO', '', 'pictograma'), "SELECT nombre,hora,imagen FROM personas,agenda,imagenes WHERE personas.idpersona='$persona' AND agenda.fecha='$fecha' AND agenda.idpersona=personas.idpersona AND agenda.idimagen=imagenes.idimagen ORDER BY hora");
         $filas = mysqli_num_rows($result);
 
         if ($filas != 0) {
