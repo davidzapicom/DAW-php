@@ -1,13 +1,5 @@
 <?php
-session_name("tragaperras");
 session_start();
-
-$_SESSION["monedas"] = 0;
-$_SESSION["fruta1"] = rand(1, $simNum);
-$_SESSION["fruta2"] = rand(1, $simNum);
-$_SESSION["fruta3"] = rand(1, $simNum);
-$_SESSION["premio"] = 0;
-$_SESSION["aviso"]= "";
 
 function recoge($var, $m = "")
 {
@@ -24,53 +16,40 @@ function recoge($var, $m = "")
     return $tmp;
 }
 
-$simNum = 8;
-
-if (!isset($_SESSION["monedas"]) || !isset($_SESSION["fruta1"]) ||
-    !isset($_SESSION["fruta2"]) || !isset($_SESSION["fruta3"]) || !isset($_SESSION["premio"])) {
-    $_SESSION["monedas"] = 0;
-    $_SESSION["fruta1"] = rand(1, $simNum);
-    $_SESSION["fruta2"] = rand(1, $simNum);
-    $_SESSION["fruta3"] = rand(1, $simNum);
-    $_SESSION["premio"] = 0;
-}
-
+$simbolosNumero = 8;   
 $accion  = recoge("accion");
 
 if ($accion == "moneda") {
     $_SESSION["monedas"] += 1;
+    $_SESSION["error"]= "";
+
 }
-
 if ($accion == "jugar" && $_SESSION["monedas"] > 0) {
-    $_SESSION["fruta1"] = rand(1, $simNum);
-    $_SESSION["fruta2"] = rand(1, $simNum);
-    $_SESSION["fruta3"] = rand(1, $simNum);
-
+    $_SESSION["fruta1"] = rand(1, $simbolosNumero);
+    $_SESSION["fruta2"] = rand(1, $simbolosNumero);
+    $_SESSION["fruta3"] = rand(1, $simbolosNumero);
     $_SESSION["monedas"] -= 1;
-
-    if ($_SESSION["fruta1"] && $_SESSION["fruta2"] && $_SESSION["fruta3"]) {
+    if ($_SESSION["fruta1"] == $_SESSION["fruta2"] &&
+        $_SESSION["fruta2"] == $_SESSION["fruta3"]) {
         $_SESSION["premio"] += 5;
-        $_SESSION["aviso"] = "ENHORABUENA!!! ha ganado 5 puntos.";
-    
-    } elseif (($_SESSION["fruta1"] && $_SESSION["fruta2"]) ||
-        ($_SESSION["fruta2"] && $_SESSION["fruta3"]) ||
-        ($_SESSION["fruta1"] && $_SESSION["fruta3"])) {
+        $_SESSION["error"]= "ENHORABUENA!!! ha ganado 5 puntos";
+    } elseif ($_SESSION["fruta1"] == $_SESSION["fruta2"] ||
+        $_SESSION["fruta2"] == $_SESSION["fruta3"] ||
+        $_SESSION["fruta1"] == $_SESSION["fruta3"]) {
         $_SESSION["premio"] += 2;
-        $_SESSION["aviso"] = "ENHORABUENA!!! ha ganado 2 puntos.";
-    } else {
-        $_SESSION["premio"] += 0;
+        $_SESSION["error"]= "ENHORABUENA!!! ha ganado 2 puntos";
+    } else{
+        $_SESSION["error"]= "";
     }
 }
-
-if ($_SESSION["monedas"] == 0) {
-    $_SESSION["aviso"] = "No tiene saldo, pulse el botón reiniciar juego.";
+if($_SESSION["monedas"]==0){
+    $_SESSION["error"]= "No tiene saldo, pulse botón reiniciar juego";
 }
 
-if ($accion == "reiniciar") {
+if($accion == "reiniciar"){
     $_SESSION["monedas"] = 0;
     $_SESSION["premio"] = 0;
-    $_SESSION["aviso"] = null;
+    $_SESSION["error"]= "";
 }
-
 header("Location:tragaperras.php");
-?>
+
